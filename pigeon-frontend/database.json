@@ -1,0 +1,18 @@
+{
+  "user": {
+    "firstName": "Test",
+    "lastName": "User",
+    "username": "username",
+    "messages": [
+      {
+        "user": {
+          "firstName": "Another",
+          "lastName": "User",
+          "username": "anotheruser"
+        },
+        "message": "This is a message.",
+        "date": "2019-05-27T16:45:49.497Z"
+      }
+    ]
+  }
+}
