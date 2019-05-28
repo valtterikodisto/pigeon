@@ -36,7 +36,6 @@ const App = props => {
     <div className="container">
       <Sidebar users={users} />
       <div className="main">
-        <p>App</p>
         <MessageWindow messages={messages} />
         <AddMessage />
       </div>

@@ -1,5 +1,4 @@
 import React from 'react'
-import { isConditional } from '@babel/types'
 
 const Sidebar = props => {
   const handleClick = () => {
