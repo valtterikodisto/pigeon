@@ -1,18 +1,62 @@
 {
-  "user": {
-    "firstName": "Test",
-    "lastName": "User",
-    "username": "username",
+  "group": {
+    "id": 0,
+    "name": "Name",
+    "users": [
+      {
+        "id": 1,
+        "username": "user1",
+        "firstName": "Temp",
+        "lastName": "User",
+        "lastSeen": "2019-05-28T14:59:57.245Z",
+        "groups": [0, 1, 2]
+      },
+      {
+        "id": 2,
+        "username": "user2",
+        "firstName": "Temp2",
+        "lastName": "User",
+        "lastSeen": "2019-05-28T15:51:57.245Z",
+        "groups": [0, 1]
+      }
+    ],
     "messages": [
       {
-        "user": {
-          "firstName": "Another",
+        "id": 5,
+        "sender": {
+          "id": 1,
+          "username": "user1",
+          "firstName": "Temp",
           "lastName": "User",
-          "username": "anotheruser"
+          "lastSeen": "2019-05-28T14:59:57.245Z",
+          "groups": [0, 1, 2]
         },
-        "message": "This is a message.",
-        "date": "2019-05-27T16:45:49.497Z"
+        "timestamp": "2019-05-28T12:51:57.245Z",
+        "message": "Welcome to the group!"
+      },
+      {
+        "id": 7,
+        "sender": {
+          "id": 2,
+          "username": "user2",
+          "firstName": "Temp2",
+          "lastName": "User",
+          "lastSeen": "2019-05-28T15:51:57.245Z",
+          "groups": [0, 1]
+        },
+        "timestamp": "2019-05-28T12:55:57.245Z",
+        "message": "Thanks you!"
       }
     ]
+  },
+  "auth": {
+    "currentUser": {
+      "id": 1,
+      "username": "user1",
+      "firstName": "Temp",
+      "lastName": "User",
+      "lastSeen": "2019-05-28T14:59:57.245Z",
+      "groups": [0, 1, 2]
+    }
   }
 }
