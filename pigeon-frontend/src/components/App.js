@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react'
 import groupService from '../services/groups'
 
 import MessageWindow from './MessageWindow'
+import AddMessage from './AddMessage'
+import './App.css'
 
 const App = props => {
   const [messages, setMessages] = useState([])
@@ -31,6 +33,7 @@ const App = props => {
     <div>
       <p>App</p>
       <MessageWindow messages={messages} />
+      <AddMessage />
     </div>
   )
 }
