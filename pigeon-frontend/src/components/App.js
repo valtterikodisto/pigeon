@@ -1,27 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
-import groupService from '../services/groups'
-
-import MessageWindow from './MessageWindow'
-import AddMessage from './AddMessage'
-import Sidebar from './Sidebar'
+import Chat from './chat/Chat'
 import './App.css'
 
 const App = props => {
-  const [messages, setMessages] = useState([])
-  const [users, setUsers] = useState([])
-  useEffect(() => {
-    groupService
-      .get()
-      .then(group => {
-        console.log(group.messages)
-        setUsers(group.users)
-        setMessages(group.messages)
-      })
-      .catch(error => console.log('Error when tried to get group'))
-  }, [])
-
   return (
+<<<<<<< HEAD
     /*
     Tätä ehdottaisin. Nimet ovat aika itsestään selviä.
     App.css sitten järjestelee nuo elementit.
@@ -40,6 +24,10 @@ const App = props => {
         <AddMessage />
       </div>
     </div>
+=======
+    // Chat-scene
+    <Chat />
+>>>>>>> a22ed3bd8cdb202cdcc7d70eac597bf510b2e6cb
   )
 }
 
