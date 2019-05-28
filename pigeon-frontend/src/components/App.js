@@ -1,6 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+
+import groupService from '../services/groups'
+
+import MessageWindow from './MessageWindow'
 
 const App = props => {
+  const [messages, setMessages] = useState([])
+  useEffect(() => {
+    groupService
+      .get()
+      .then(group => {
+        console.log(group.messages)
+        setMessages(group.messages)
+      })
+      .catch(error => console.log('Error when tried to get group'))
+  }, [])
+
   return (
     /*
     Tätä ehdottaisin. Nimet ovat aika itsestään selviä.
@@ -13,7 +28,10 @@ const App = props => {
       </section>
     </div>
     */
-    <p>App</p>
+    <div>
+      <p>App</p>
+      <MessageWindow messages={messages} />
+    </div>
   )
 }
 
