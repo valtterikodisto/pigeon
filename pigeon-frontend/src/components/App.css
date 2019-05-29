@@ -21,24 +21,50 @@
 /* REFACTOR CODE */
 
 .pigeon-messages-container {
-  display: grid;
-  justify-items: center;
-  grid-auto-rows: auto;
-  grid-gap: 20px;
   background-color: red;
   padding: 10px;
 }
 
-.pigeon-message {
+.pigeon-message-container-sender {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  grid-template-rows: 0fr 1fr;
-  justify-items: center;
-  width: 100%;
-  padding: 15px 0px;
+  grid-gap: 100px;
+  justify-items: right;
+  background-color: turquoise;
+}
+
+.pigeon-message-container-reciever {
+  display: grid;
+  grid-gap: 100px;
+  justify-items: left;
+  background-color: green;
+}
+
+.pigeon-message-reciever {
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  grid-template-rows: 2fr 0fr;
+  justify-items: left;
   background-color: blue;
 }
 
+.pigeon-message-sender {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-template-rows: 2fr 0fr;
+  justify-items: right;
+  background-color: purple;
+}
+
+.pigeon-message-from {
+  background-color: white;
+}
+
+.pigeon-message-timestamp {
+  background-color: yellow;
+  grid-column: 1 / 4;
+}
+
+/*
 .pigeon-message-timestamp {
   grid-column-start: 2;
   grid-column-end: 4;
@@ -48,17 +74,15 @@
 }
 
 .pigeon-message-sender {
-  /* STYLE */
 }
 
 .pigeon-message-body {
-  /* STYLE */
   display: grid;
   background-color: green;
   width: 100%;
   justify-items: left;
 }
-
+*/
 /* PIGEON MESSAGE WINDOW END */
 
 .new-message {

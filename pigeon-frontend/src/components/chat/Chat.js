@@ -5,11 +5,13 @@ import MessageWindow from './MessageWindow'
 import AddMessage from './AddMessage'
 
 import groupService from '../../services/groups'
+import userService from '../../services/user'
 
 const Chat = () => {
   const [name, setName] = useState('')
   const [messages, setMessages] = useState([])
   const [users, setUsers] = useState([])
+  const [currentUser, setCurrentUser] = useState({})
 
   useEffect(() => {
     groupService
@@ -24,11 +26,22 @@ const Chat = () => {
       .catch(error => console.log('ERROR'))
   }, [])
 
+  // Temp solution for getting current user
+  useEffect(() => {
+    userService
+      .getUser()
+      .then(user => {
+        console.log('Logged in as:', user.username)
+        setCurrentUser(user)
+      })
+      .catch(error => console.log('ERROR'))
+  }, [])
+
   return (
     <div className="container">
       <Sidebar users={users} />
       <div className="main">
-        <MessageWindow messages={messages} />
+        <MessageWindow messages={messages} currentUser={currentUser} />
         <AddMessage />
       </div>
     </div>
