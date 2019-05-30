@@ -15,75 +15,8 @@
 .main {
   grid-area: main;
   width: 100%;
+  overflow-y: scroll;
 }
-
-/* PIGEON MESSAGE WINDOW START */
-/* REFACTOR CODE */
-
-.pigeon-messages-container {
-  background-color: red;
-  padding: 10px;
-}
-
-.pigeon-message-container-sender {
-  display: grid;
-  grid-gap: 100px;
-  justify-items: right;
-  background-color: turquoise;
-}
-
-.pigeon-message-container-reciever {
-  display: grid;
-  grid-gap: 100px;
-  justify-items: left;
-  background-color: green;
-}
-
-.pigeon-message-reciever {
-  display: grid;
-  grid-template-columns: 2fr 4fr;
-  grid-template-rows: 2fr 0fr;
-  justify-items: left;
-  background-color: blue;
-}
-
-.pigeon-message-sender {
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  grid-template-rows: 2fr 0fr;
-  justify-items: right;
-  background-color: purple;
-}
-
-.pigeon-message-from {
-  background-color: white;
-}
-
-.pigeon-message-timestamp {
-  background-color: yellow;
-  grid-column: 1 / 4;
-}
-
-/*
-.pigeon-message-timestamp {
-  grid-column-start: 2;
-  grid-column-end: 4;
-  justify-items: left;
-  background-color: white;
-  width: 100%;
-}
-
-.pigeon-message-sender {
-}
-
-.pigeon-message-body {
-  display: grid;
-  background-color: green;
-  width: 100%;
-  justify-items: left;
-}
-*/
-/* PIGEON MESSAGE WINDOW END */
 
 .new-message {
   position: fixed;
@@ -92,6 +25,8 @@
   padding: 5px;
   margin-left: auto;
   border-top: 1px solid #3f3f3f;
+  height: 56px;
+  background: red;
 }
 
 .new-message-form input {

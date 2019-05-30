@@ -1,43 +1,25 @@
 import React from 'react'
 
+import './Message.css'
+
 const Message = ({ message, currentUser }) => {
   const messageObject = { ...message, timestamp: new Date(message.timestamp) }
   const sender = { ...messageObject.sender }
 
-  console.log('MESSAGE FROM:', sender.username)
-  const isSender = currentUser.username === sender.username
+  const getMessageClass = () => {
+    const isSender = currentUser.username === sender.username
 
-  const pigeonMessageFrom = () => (
-    <div className="pigeon-message-from">{`${sender.firstName} ${sender.lastName}`}</div>
-  )
-  const pigeonMessageBody = () => <div className="pigeon-message-body">{messageObject.message}</div>
-
-  const messageFromAndBody = () => {
     if (isSender) {
-      return (
-        <>
-          {pigeonMessageBody()}
-          {pigeonMessageFrom()}
-        </>
-      )
+      return 'pigeon-message pigeon-message-sender'
     }
-
-    return (
-      <>
-        {pigeonMessageFrom()}
-        {pigeonMessageBody()}
-      </>
-    )
+    return 'pigeon-message pigeon-message-reciever'
   }
 
   return (
-    <div
-      className={isSender ? 'pigeon-message-container-sender' : 'pigeon-message-container-reciever'}
-    >
-      <div className={isSender ? 'pigeon-message-sender' : 'pigeon-message-reciever'}>
-        {messageFromAndBody()}
-        <div className="pigeon-message-timestamp">{messageObject.timestamp.toLocaleString()}</div>
-      </div>
+    <div className={getMessageClass()}>
+      <div className="pigeon-message-from">{`${sender.firstName} ${sender.lastName}`}</div>
+      <div className="pigeon-message-body">{messageObject.message}</div>
+      <div className="pigeon-message-timestamp">{messageObject.timestamp.toLocaleString()}</div>
     </div>
   )
 }

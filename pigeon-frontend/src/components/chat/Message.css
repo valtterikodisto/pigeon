@@ -1,0 +1,48 @@
+.pigeon-messages-container {
+  display: grid;
+  padding-bottom: 70px;
+  background: blue;
+}
+
+/* HIDE SCROLL BAR */
+
+::-webkit-scrollbar {
+  width: 0 !important;
+}
+.pigeon-messages-container {
+  overflow: -moz-scrollbars-none;
+}
+.pigeon-messages-container {
+  -ms-overflow-style: none;
+}
+
+/* STYLE MESSAGE BUBBLES */
+
+.pigeon-message {
+  display: grid;
+  grid-template-columns: 60%;
+}
+
+.pigeon-message-sender {
+  justify-content: end;
+  justify-items: end;
+  padding: 10px;
+}
+
+.pigeon-message-reciever {
+  justify-content: start;
+  justify-items: start;
+  padding: 10px;
+}
+
+.pigeon-message-sender > .pigeon-message-body {
+  background: teal;
+  border-radius: 14px 14px 0 14px;
+  padding: 10px;
+}
+
+.pigeon-message-reciever > .pigeon-message-body {
+  background: red;
+  border-radius: 14px 14px 14px 0px;
+  padding: 10px 20px;
+}
