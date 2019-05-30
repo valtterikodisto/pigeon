@@ -15,11 +15,15 @@ const Message = ({ message, currentUser }) => {
     return 'pigeon-message pigeon-message-reciever'
   }
 
+  const getTimestamp = () => {
+    return `${messageObject.timestamp.getHours()}:${messageObject.timestamp.getMinutes()}`
+  }
+
   return (
     <div className={getMessageClass()}>
       <div className="pigeon-message-from">{`${sender.firstName} ${sender.lastName}`}</div>
       <div className="pigeon-message-body">{messageObject.message}</div>
-      <div className="pigeon-message-timestamp">{messageObject.timestamp.toLocaleString()}</div>
+      <div className="pigeon-message-timestamp">{getTimestamp()}</div>
     </div>
   )
 }

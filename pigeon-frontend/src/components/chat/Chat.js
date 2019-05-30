@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import Sidebar from './Sidebar'
 import MessageWindow from './MessageWindow'
-import AddMessage from './AddMessage'
+import MessageForm from './MessageForm'
 
 import groupService from '../../services/groups'
 import userService from '../../services/user'
@@ -42,7 +42,7 @@ const Chat = () => {
       <Sidebar users={users} />
       <div className="main">
         <MessageWindow messages={messages} currentUser={currentUser} />
-        <AddMessage />
+        <MessageForm />
       </div>
     </div>
   )
