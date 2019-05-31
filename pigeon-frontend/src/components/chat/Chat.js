@@ -16,12 +16,15 @@ const Chat = () => {
   useEffect(() => {
     groupService
       .get()
-      .then(group => {
-        console.log('GROUP:', group)
+      .then(groups => {
+        groups.forEach(group => {
+          console.log('GROUP:', group)
 
-        setName(group.name)
-        setMessages(group.messages)
-        setUsers(group.users)
+          setName(group.name)
+          setMessages(group.messages)
+          setUsers(group.users)
+
+        })
       })
       .catch(error => console.log('ERROR'))
   }, [])

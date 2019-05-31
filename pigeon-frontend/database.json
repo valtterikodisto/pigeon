@@ -1,288 +1,367 @@
 {
-  "group": {
-    "id": 0,
-    "name": "Name",
-    "users": [
-      {
-        "id": 1,
-        "username": "user1",
-        "firstName": "Temp",
-        "lastName": "User",
-        "lastSeen": "2019-05-28T14:59:57.245Z",
-        "groups": [0, 1, 2]
-      },
-      {
-        "id": 2,
-        "username": "user2",
-        "firstName": "Temp2",
-        "lastName": "User",
-        "lastSeen": "2019-05-28T15:51:57.245Z",
-        "groups": [0, 1]
-      }
-    ],
-    "messages": [
-      {
-        "id": 5,
-        "sender": {
+  "group": [
+    {
+      "id": 0,
+      "name": "Name",
+      "users": [
+        {
           "id": 1,
           "username": "user1",
           "firstName": "Temp",
           "lastName": "User",
           "lastSeen": "2019-05-28T14:59:57.245Z",
-          "groups": [0, 1, 2]
+          "groups": [
+            0,
+            1,
+            2
+          ]
         },
-        "timestamp": "2019-05-28T12:51:57.245Z",
-        "message": "Welcome to the group!"
-      },
-      {
-        "id": 7,
-        "sender": {
+        {
           "id": 2,
           "username": "user2",
           "firstName": "Temp2",
           "lastName": "User",
           "lastSeen": "2019-05-28T15:51:57.245Z",
-          "groups": [0, 1]
+          "groups": [
+            0,
+            1
+          ]
+        }
+      ],
+      "messages": [
+        {
+          "id": 0,
+          "sender": {
+            "id": 1,
+            "username": "user1",
+            "firstName": "Temp",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T14:59:57.245Z",
+            "groups": [
+              0,
+              1,
+              2
+            ]
+          },
+          "timestamp": "2019-05-28T12:51:57.245Z",
+          "message": "Welcome to the group!"
         },
-        "timestamp": "2019-05-28T12:55:57.245Z",
-        "message": "Thanks you!"
-      },
-      {
-        "id": 8,
-        "sender": {
+        {
           "id": 1,
-          "username": "user1",
-          "firstName": "Temp",
-          "lastName": "User",
-          "lastSeen": "2019-05-28T14:59:57.245Z",
-          "groups": [0, 1, 2]
+          "sender": {
+            "id": 2,
+            "username": "user2",
+            "firstName": "Temp2",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T15:51:57.245Z",
+            "groups": [
+              0,
+              1
+            ]
+          },
+          "timestamp": "2019-05-28T12:55:57.245Z",
+          "message": "Thanks you!"
         },
-        "timestamp": "2019-05-28T20:51:57.245Z",
-        "message": "Welcome to the group!"
-      },
-      {
-        "id": 10,
-        "sender": {
+        {
           "id": 2,
-          "username": "user2",
-          "firstName": "Temp2",
-          "lastName": "User",
-          "lastSeen": "2019-05-28T22:51:57.245Z",
-          "groups": [0, 1]
+          "sender": {
+            "id": 1,
+            "username": "user1",
+            "firstName": "Temp",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T14:59:57.245Z",
+            "groups": [
+              0,
+              1,
+              2
+            ]
+          },
+          "timestamp": "2019-05-28T20:51:57.245Z",
+          "message": "Welcome to the group!"
         },
-        "timestamp": "2019-05-28T21:55:57.245Z",
-        "message": "Thanks you!"
-      },
-      {
-        "id": 5,
-        "sender": {
-          "id": 1,
-          "username": "user1",
-          "firstName": "Temp",
-          "lastName": "User",
-          "lastSeen": "2019-05-28T14:59:57.245Z",
-          "groups": [0, 1, 2]
+        {
+          "id": 3,
+          "sender": {
+            "id": 2,
+            "username": "user2",
+            "firstName": "Temp2",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T22:51:57.245Z",
+            "groups": [
+              0,
+              1
+            ]
+          },
+          "timestamp": "2019-05-28T21:55:57.245Z",
+          "message": "Thanks you!"
         },
-        "timestamp": "2019-05-28T12:51:57.245Z",
-        "message": "Welcome to the group!"
-      },
-      {
-        "id": 7,
-        "sender": {
-          "id": 2,
-          "username": "user2",
-          "firstName": "Temp2",
-          "lastName": "User",
-          "lastSeen": "2019-05-28T15:51:57.245Z",
-          "groups": [0, 1]
+        {
+          "id": 4,
+          "sender": {
+            "id": 1,
+            "username": "user1",
+            "firstName": "Temp",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T14:59:57.245Z",
+            "groups": [
+              0,
+              1,
+              2
+            ]
+          },
+          "timestamp": "2019-05-28T12:51:57.245Z",
+          "message": "Welcome to the group!"
         },
-        "timestamp": "2019-05-28T12:55:57.245Z",
-        "message": "Thanks you!"
-      },
-      {
-        "id": 8,
-        "sender": {
-          "id": 1,
-          "username": "user1",
-          "firstName": "Temp",
-          "lastName": "User",
-          "lastSeen": "2019-05-28T14:59:57.245Z",
-          "groups": [0, 1, 2]
+        {
+          "id": 5,
+          "sender": {
+            "id": 2,
+            "username": "user2",
+            "firstName": "Temp2",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T15:51:57.245Z",
+            "groups": [
+              0,
+              1
+            ]
+          },
+          "timestamp": "2019-05-28T12:55:57.245Z",
+          "message": "Thanks you!"
         },
-        "timestamp": "2019-05-28T20:51:57.245Z",
-        "message": "Welcome to the group!"
-      },
-      {
-        "id": 10,
-        "sender": {
-          "id": 2,
-          "username": "user2",
-          "firstName": "Temp2",
-          "lastName": "User",
-          "lastSeen": "2019-05-28T22:51:57.245Z",
-          "groups": [0, 1]
+        {
+          "id": 6,
+          "sender": {
+            "id": 1,
+            "username": "user1",
+            "firstName": "Temp",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T14:59:57.245Z",
+            "groups": [
+              0,
+              1,
+              2
+            ]
+          },
+          "timestamp": "2019-05-28T20:51:57.245Z",
+          "message": "Welcome to the group!"
         },
-        "timestamp": "2019-05-28T21:55:57.245Z",
-        "message": "Thanks you!"
-      },
-      {
-        "id": 5,
-        "sender": {
-          "id": 1,
-          "username": "user1",
-          "firstName": "Temp",
-          "lastName": "User",
-          "lastSeen": "2019-05-28T14:59:57.245Z",
-          "groups": [0, 1, 2]
+        {
+          "id": 7,
+          "sender": {
+            "id": 2,
+            "username": "user2",
+            "firstName": "Temp2",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T22:51:57.245Z",
+            "groups": [
+              0,
+              1
+            ]
+          },
+          "timestamp": "2019-05-28T21:55:57.245Z",
+          "message": "Thanks you!"
         },
-        "timestamp": "2019-05-28T12:51:57.245Z",
-        "message": "Welcome to the group!"
-      },
-      {
-        "id": 7,
-        "sender": {
-          "id": 2,
-          "username": "user2",
-          "firstName": "Temp2",
-          "lastName": "User",
-          "lastSeen": "2019-05-28T15:51:57.245Z",
-          "groups": [0, 1]
+        {
+          "id": 8,
+          "sender": {
+            "id": 1,
+            "username": "user1",
+            "firstName": "Temp",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T14:59:57.245Z",
+            "groups": [
+              0,
+              1,
+              2
+            ]
+          },
+          "timestamp": "2019-05-28T12:51:57.245Z",
+          "message": "Welcome to the group!"
         },
-        "timestamp": "2019-05-28T12:55:57.245Z",
-        "message": "Thanks you!"
-      },
-      {
-        "id": 8,
-        "sender": {
-          "id": 1,
-          "username": "user1",
-          "firstName": "Temp",
-          "lastName": "User",
-          "lastSeen": "2019-05-28T14:59:57.245Z",
-          "groups": [0, 1, 2]
+        {
+          "id": 9,
+          "sender": {
+            "id": 2,
+            "username": "user2",
+            "firstName": "Temp2",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T15:51:57.245Z",
+            "groups": [
+              0,
+              1
+            ]
+          },
+          "timestamp": "2019-05-28T12:55:57.245Z",
+          "message": "Thanks you!"
         },
-        "timestamp": "2019-05-28T20:51:57.245Z",
-        "message": "Welcome to the group!"
-      },
-      {
-        "id": 10,
-        "sender": {
-          "id": 2,
-          "username": "user2",
-          "firstName": "Temp2",
-          "lastName": "User",
-          "lastSeen": "2019-05-28T22:51:57.245Z",
-          "groups": [0, 1]
+        {
+          "id": 10,
+          "sender": {
+            "id": 1,
+            "username": "user1",
+            "firstName": "Temp",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T14:59:57.245Z",
+            "groups": [
+              0,
+              1,
+              2
+            ]
+          },
+          "timestamp": "2019-05-28T20:51:57.245Z",
+          "message": "Welcome to the group!"
         },
-        "timestamp": "2019-05-28T21:55:57.245Z",
-        "message": "Thanks you!"
-      },
-      {
-        "id": 5,
-        "sender": {
-          "id": 1,
-          "username": "user1",
-          "firstName": "Temp",
-          "lastName": "User",
-          "lastSeen": "2019-05-28T14:59:57.245Z",
-          "groups": [0, 1, 2]
+        {
+          "id": 11,
+          "sender": {
+            "id": 2,
+            "username": "user2",
+            "firstName": "Temp2",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T22:51:57.245Z",
+            "groups": [
+              0,
+              1
+            ]
+          },
+          "timestamp": "2019-05-28T21:55:57.245Z",
+          "message": "Thanks you!"
         },
-        "timestamp": "2019-05-28T12:51:57.245Z",
-        "message": "Welcome to the group!"
-      },
-      {
-        "id": 7,
-        "sender": {
-          "id": 2,
-          "username": "user2",
-          "firstName": "Temp2",
-          "lastName": "User",
-          "lastSeen": "2019-05-28T15:51:57.245Z",
-          "groups": [0, 1]
+        {
+          "id": 12,
+          "sender": {
+            "id": 1,
+            "username": "user1",
+            "firstName": "Temp",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T14:59:57.245Z",
+            "groups": [
+              0,
+              1,
+              2
+            ]
+          },
+          "timestamp": "2019-05-28T12:51:57.245Z",
+          "message": "Welcome to the group!"
         },
-        "timestamp": "2019-05-28T12:55:57.245Z",
-        "message": "Thanks you!"
-      },
-      {
-        "id": 8,
-        "sender": {
-          "id": 1,
-          "username": "user1",
-          "firstName": "Temp",
-          "lastName": "User",
-          "lastSeen": "2019-05-28T14:59:57.245Z",
-          "groups": [0, 1, 2]
+        {
+          "id": 13,
+          "sender": {
+            "id": 2,
+            "username": "user2",
+            "firstName": "Temp2",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T15:51:57.245Z",
+            "groups": [
+              0,
+              1
+            ]
+          },
+          "timestamp": "2019-05-28T12:55:57.245Z",
+          "message": "Thanks you!"
         },
-        "timestamp": "2019-05-28T20:51:57.245Z",
-        "message": "Welcome to the group!"
-      },
-      {
-        "id": 10,
-        "sender": {
-          "id": 2,
-          "username": "user2",
-          "firstName": "Temp2",
-          "lastName": "User",
-          "lastSeen": "2019-05-28T22:51:57.245Z",
-          "groups": [0, 1]
+        {
+          "id": 14,
+          "sender": {
+            "id": 1,
+            "username": "user1",
+            "firstName": "Temp",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T14:59:57.245Z",
+            "groups": [
+              0,
+              1,
+              2
+            ]
+          },
+          "timestamp": "2019-05-28T20:51:57.245Z",
+          "message": "Welcome to the group!"
         },
-        "timestamp": "2019-05-28T21:55:57.245Z",
-        "message": "Thanks you!"
-      },
-      {
-        "id": 5,
-        "sender": {
-          "id": 1,
-          "username": "user1",
-          "firstName": "Temp",
-          "lastName": "User",
-          "lastSeen": "2019-05-28T14:59:57.245Z",
-          "groups": [0, 1, 2]
+        {
+          "id": 15,
+          "sender": {
+            "id": 2,
+            "username": "user2",
+            "firstName": "Temp2",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T22:51:57.245Z",
+            "groups": [
+              0,
+              1
+            ]
+          },
+          "timestamp": "2019-05-28T21:55:57.245Z",
+          "message": "Thanks you!"
         },
-        "timestamp": "2019-05-28T12:51:57.245Z",
-        "message": "Welcome to the group!"
-      },
-      {
-        "id": 7,
-        "sender": {
-          "id": 2,
-          "username": "user2",
-          "firstName": "Temp2",
-          "lastName": "User",
-          "lastSeen": "2019-05-28T15:51:57.245Z",
-          "groups": [0, 1]
+        {
+          "id": 16,
+          "sender": {
+            "id": 1,
+            "username": "user1",
+            "firstName": "Temp",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T14:59:57.245Z",
+            "groups": [
+              0,
+              1,
+              2
+            ]
+          },
+          "timestamp": "2019-05-28T12:51:57.245Z",
+          "message": "Welcome to the group!"
         },
-        "timestamp": "2019-05-28T12:55:57.245Z",
-        "message": "Thanks you!"
-      },
-      {
-        "id": 8,
-        "sender": {
-          "id": 1,
-          "username": "user1",
-          "firstName": "Temp",
-          "lastName": "User",
-          "lastSeen": "2019-05-28T14:59:57.245Z",
-          "groups": [0, 1, 2]
+        {
+          "id": 17,
+          "sender": {
+            "id": 2,
+            "username": "user2",
+            "firstName": "Temp2",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T15:51:57.245Z",
+            "groups": [
+              0,
+              1
+            ]
+          },
+          "timestamp": "2019-05-28T12:55:57.245Z",
+          "message": "Thanks you!"
         },
-        "timestamp": "2019-05-28T20:51:57.245Z",
-        "message": "Welcome to the group! group! group! group! group! group! group! group!group! group! group! group! group! "
-      },
-      {
-        "id": 10,
-        "sender": {
-          "id": 2,
-          "username": "user2",
-          "firstName": "Temp2",
-          "lastName": "User",
-          "lastSeen": "2019-05-28T22:51:57.245Z",
-          "groups": [0, 1]
+        {
+          "id": 18,
+          "sender": {
+            "id": 1,
+            "username": "user1",
+            "firstName": "Temp",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T14:59:57.245Z",
+            "groups": [
+              0,
+              1,
+              2
+            ]
+          },
+          "timestamp": "2019-05-28T20:51:57.245Z",
+          "message": "Welcome to the group! group! group! group! group! group! group! group!group! group! group! group! group! "
         },
-        "timestamp": "2019-05-28T21:55:57.245Z",
-        "message": "Thanks you! Thanks you! Thanks you! Thanks you! Thanks you! Thanks you! Thanks you! Thanks you! Thanks you! Thanks you! Thanks you!  Thanks you!"
-      }
-    ]
-  },
+        {
+          "id": 19,
+          "sender": {
+            "id": 2,
+            "username": "user2",
+            "firstName": "Temp2",
+            "lastName": "User",
+            "lastSeen": "2019-05-28T22:51:57.245Z",
+            "groups": [
+              0,
+              1
+            ]
+          },
+          "timestamp": "2019-05-28T21:55:57.245Z",
+          "message": "Thanks you! Thanks you! Thanks you! Thanks you! Thanks you! Thanks you! Thanks you! Thanks you! Thanks you! Thanks you! Thanks you!  Thanks you!"
+        }
+      ]
+    }
+  ],
   "auth": {
     "currentUser": {
       "id": 1,
@@ -290,7 +369,11 @@
       "firstName": "Temp",
       "lastName": "User",
       "lastSeen": "2019-05-28T14:59:57.245Z",
-      "groups": [0, 1, 2]
+      "groups": [
+        0,
+        1,
+        2
+      ]
     }
   }
 }
