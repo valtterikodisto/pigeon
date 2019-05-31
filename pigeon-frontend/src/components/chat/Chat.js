@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import Sidebar from './Sidebar'
 import MessageWindow from './MessageWindow'
 import MessageForm from './MessageForm'
+import Header from './Header'
 
 import groupService from '../../services/groups'
 import userService from '../../services/user'
@@ -42,7 +43,7 @@ const Chat = () => {
 
   return (
     <div className="container">
-      <Sidebar users={users} />
+      <Header groupName={name} users={users} />
       <div className="main">
         <MessageWindow messages={messages} currentUser={currentUser} />
         <MessageForm />

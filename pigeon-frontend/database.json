@@ -2,7 +2,7 @@
   "group": [
     {
       "id": 0,
-      "name": "Name",
+      "name": "Groups name",
       "users": [
         {
           "id": 1,

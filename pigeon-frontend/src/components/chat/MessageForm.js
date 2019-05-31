@@ -8,7 +8,7 @@ const AddMessage = props => {
         <input type="text" placeholder="Type your message here.." />
         <span />
       </form>
-      <img id="send-icon" src={sendIcon} />
+      <img id="send-icon" src={sendIcon} alt="send icon" />
     </div>
   )
 }
