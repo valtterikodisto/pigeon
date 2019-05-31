@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 
-import Sidebar from './Sidebar'
 import MessageWindow from './MessageWindow'
 import MessageForm from './MessageForm'
 import Header from './Header'
@@ -24,7 +23,6 @@ const Chat = () => {
           setName(group.name)
           setMessages(group.messages)
           setUsers(group.users)
-
         })
       })
       .catch(error => console.log('ERROR'))

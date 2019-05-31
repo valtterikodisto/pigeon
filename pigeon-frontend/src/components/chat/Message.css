@@ -1,6 +1,6 @@
 .pigeon-messages-container {
   display: grid;
-  padding-bottom: 70px;
+  padding: 15px 0px 70px;
 }
 
 /* HIDE SCROLL BAR */
