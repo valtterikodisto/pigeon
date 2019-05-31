@@ -9,7 +9,7 @@
   grid-template-areas: 
   'header' 
   'main';
-  grid-template-rows: 50px;
+  grid-template-rows: 60px;
   height: 100vh;
   width: 100%;
 }
@@ -26,7 +26,8 @@
   top: 0;
   width: 100%;
   border-bottom: 1px solid #3f3f3f;
-  background-color: #33f8a6;
+  background-color: #44ab80;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .header-container {
@@ -49,7 +50,7 @@
 .message-form-container {
   position: fixed;
   display: grid;
-  grid-template-columns: 5fr minmax(220px, 1fr);
+  grid-template-columns: 5fr minmax(55px, 20px);
   width: 100%;
   bottom: 0;
   padding: 5px;
