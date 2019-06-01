@@ -5,7 +5,7 @@ import Login from './login/Login'
 import './App.css'
 
 const App = props => {
-  return <Chat />
+  return <Login />
 }
 
 export default App

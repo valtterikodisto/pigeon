@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import LoginForm from './LoginForm'
+import RegisterForm from './RegisterForm'
 import './Login.css'
 
 const Login = () => {
@@ -13,7 +14,7 @@ const Login = () => {
     if (loginHidden) {
       return (
         <div className="register-section">
-          <p>Hidden field</p>
+          <RegisterForm />
         </div>
       )
     } else {
