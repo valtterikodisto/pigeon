@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
 import './Login.css'
+import logo from '../../pictures/pigeon-logo.svg'
 
 const Login = () => {
   const [loginHidden, setLoginHidden] = useState(false)
@@ -21,7 +22,10 @@ const Login = () => {
   return (
     <div className="login-page-wrapper">
       <header>
-        <div className="logo-wrapper">Pigeon</div>
+        <div className="logo-wrapper">
+          <img src={logo} alt="pigeon logo" />
+          <p className="logo-text">Pigeon</p>
+        </div>
         <div className="login-register-button-wrapper">
           <div className="login-register-button">
             <button
