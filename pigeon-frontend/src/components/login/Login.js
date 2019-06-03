@@ -21,7 +21,7 @@ const Login = () => {
   return (
     <div className="login-page-wrapper">
       <header>
-        <div className="logo-wrapper">Logo</div>
+        <div className="logo-wrapper">Pigeon</div>
         <div className="login-register-button-wrapper">
           <div className="login-register-button">
             <button

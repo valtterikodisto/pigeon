@@ -11,8 +11,10 @@ const LoginForm = () => {
 
   return (
     <div className="login-section">
-      <div>
-        <p>TITLE</p>
+      <div class="form-header">
+        <p>
+          Log in to <span>Pigeon</span>
+        </p>
       </div>
 
       <form id="login-form" onSubmit={handleSubmit} autoComplete="off">
@@ -36,7 +38,7 @@ const LoginForm = () => {
         />
         <div className="form-group">
           <button className="form-submit-button" type="submit">
-            Login
+            Log in
           </button>
         </div>
       </form>

@@ -11,8 +11,10 @@ const LoginForm = () => {
 
   return (
     <div className="register-section">
-      <div>
-        <p>Title</p>
+      <div class="form-header">
+        <p>
+          Register to <span>Pigeon</span>
+        </p>
       </div>
 
       <form id="login-form" onSubmit={handleSubmit} autoComplete="off">

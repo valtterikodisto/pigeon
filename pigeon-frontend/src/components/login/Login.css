@@ -21,6 +21,9 @@
   display: grid;
   justify-content: start;
   align-content: center;
+  font-size: 1.5em;
+  font-family: 'Baloo', cursive;
+  color: white;
 }
 
 .login-register-button-wrapper {
@@ -40,6 +43,7 @@
   padding: 0.7em 1.2em;
   font-weight: 600;
   color: white;
+  outline: none;
 }
 
 .login-register-button > button:disabled {
@@ -78,7 +82,7 @@
 
 .login-register-section-wrapper > div {
   display: grid;
-  background: gray;
+  background: #52cc99;
   grid-template-columns: minmax(100%, 500px);
   grid-template-rows: 1fr 5fr;
   margin: 1em;
@@ -88,13 +92,34 @@
   box-shadow: -8px 10px 18px rgba(0, 0, 0, 0.15);
 }
 
+/* LOGIN REGISTER FORM HEADER STYLES */
+
+.form-header {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: white;
+}
+
+.form-header span {
+  padding: 3px;
+  font-family: 'Baloo', cursive;
+  font-size: 1.4em;
+  font-weight: 500;
+  color: #80ffca;
+}
+
 /* LOGIN REGISTER FORM STYLES */
 
 .login-register-section-wrapper form {
   display: grid;
   align-content: center;
   grid-gap: 2em;
-  background: red;
+  padding: 0.5em;
 }
 
 .form-group {
@@ -105,6 +130,23 @@
 .form-group input {
   width: 100%;
   height: 2.5em;
+  padding: 0 0.7em;
+  border-radius: 20px;
+  border-width: 3px;
+  border-color: transparent;
+}
+
+.form-group input:focus {
+  outline: none;
+  box-shadow: -8px 10px 18px rgba(0, 0, 0, 0.15);
+  transition-duration: 0.3s;
+}
+
+.form-group > label {
+  color: white;
+  font-size: 0.9em;
+  font-weight: 600;
+  margin-left: 0.6em;
 }
 
 .form-submit-button {
@@ -112,6 +154,19 @@
   margin-top: 1em;
   padding: 0.8em;
   width: 10em;
+  border-radius: 20px;
+  border-color: transparent;
+  font-weight: 600;
+  background: white;
+  cursor: pointer;
+  outline: none;
+}
+
+.form-submit-button:hover {
+  transition-duration: 0.4s;
+  background-color: #ff7e66;
+  color: white;
+  box-shadow: -8px 10px 18px rgba(0, 0, 0, 0.15);
 }
 
 .form-multiple-group {
@@ -120,10 +175,17 @@
   grid-column-gap: 0.5em;
 }
 
-/* LOGIN REGISTER FORM ERROR MESSAGES */
+/* LOGIN REGISTER FORM ERROR */
+
+.form-error {
+  border: 2px solid #b33a24 !important;
+  border-radius: 4px;
+}
 
 .form-error-message {
+  color: #b33a24;
   font-size: 0.7em;
   position: absolute;
   margin-top: 5.8em;
+  margin-left: 1em;
 }
