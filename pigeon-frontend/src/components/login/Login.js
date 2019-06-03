@@ -12,17 +12,9 @@ const Login = () => {
 
   const loginRegisterSection = () => {
     if (loginHidden) {
-      return (
-        <div className="register-section">
-          <RegisterForm />
-        </div>
-      )
+      return <RegisterForm />
     } else {
-      return (
-        <div className="login-section">
-          <LoginForm />
-        </div>
-      )
+      return <LoginForm />
     }
   }
 

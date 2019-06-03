@@ -5,6 +5,15 @@ const validate = values => {
   let errors = {}
 
   // Validation rules
+
+  if (!values.firstName) {
+    errors.firstName = 'First name required'
+  }
+
+  if (!values.lastName) {
+    errors.lastName = 'Last name required'
+  }
+
   if (!values.username) {
     errors.username = 'Username is required'
   }
@@ -13,7 +22,7 @@ const validate = values => {
     errors.password = 'Password is required'
   }
 
-  if (!values.confirmPassword || values.password !== values.confirmPassword) {
+  if (values.password !== values.confirmPassword) {
     errors.confirmPassword = 'Passwords do not match'
   }
 

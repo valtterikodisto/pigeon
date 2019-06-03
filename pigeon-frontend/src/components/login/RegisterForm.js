@@ -1,51 +1,77 @@
 import React from 'react'
+import FormInput from './FormInput'
 import useForm from '../../hooks/useForm'
 import validateRegister from '../../utils/validateRegister'
 
 const LoginForm = () => {
   // What we will do after successful login
-  const callback = () => console.log('Form submitted')
+  const callback = () => console.log('User registered')
 
   const { values, errors, handleChange, handleSubmit } = useForm(callback, validateRegister)
 
   return (
-    <form id="login-form" onSubmit={handleSubmit} autoComplete="off">
-      <div className="form-group">
-        <label>Username</label>
-        <input
-          id="login-username"
+    <div className="register-section">
+      <div>
+        <p>Title</p>
+      </div>
+
+      <form id="login-form" onSubmit={handleSubmit} autoComplete="off">
+        <div className="form-multiple-group">
+          <FormInput
+            label="First name"
+            id="register-firstName"
+            type="text"
+            name="firstName"
+            onChange={handleChange}
+            values={values}
+            errors={errors}
+          />
+          <FormInput
+            label="Last name"
+            id="register-lastName"
+            type="text"
+            name="lastName"
+            onChange={handleChange}
+            values={values}
+            errors={errors}
+          />
+        </div>
+        <FormInput
+          label="Username"
+          id="register-username"
           type="text"
           name="username"
           onChange={handleChange}
-          value={values.username || ''}
+          values={values}
+          errors={errors}
         />
-      </div>
-      <div className="form-group">
-        <label>Password</label>
-        <input
-          id="login-password"
-          type="password"
-          name="password"
-          onChange={handleChange}
-          value={values.password || ''}
-        />
-      </div>
-      <div className="form-group">
-        <label>Confirm password</label>
-        <input
-          id="login-confirmPassword"
-          type="password"
-          name="confirmPassword"
-          onChange={handleChange}
-          value={values.confirmPassword || ''}
-        />
-      </div>
-      <div className="form-group">
-        <button className="form-submit-button" type="submit">
-          Register
-        </button>
-      </div>
-    </form>
+        <div className="form-multiple-group">
+          <FormInput
+            label="Password"
+            id="register-password"
+            type="password"
+            name="password"
+            onChange={handleChange}
+            values={values}
+            errors={errors}
+          />
+          <FormInput
+            label="Confirm password"
+            id="register-confirmPassword"
+            type="password"
+            name="confirmPassword"
+            onChange={handleChange}
+            values={values}
+            errors={errors}
+          />
+        </div>
+        <div className="form-group">
+          <button className="form-submit-button" type="submit">
+            Register
+          </button>
+        </div>
+      </form>
+    </div>
   )
 }
 
