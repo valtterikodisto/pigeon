@@ -21,4 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.env
 bfg-1\.13\.0\.jar
