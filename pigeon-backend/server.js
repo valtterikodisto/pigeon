@@ -12,15 +12,17 @@ mongoose.set('useFindAndModify', false)
 const MONGODB_URI = process.env.MONGODB_URI
 
 //TODO, move to the file typedefs in the folder graphql
+//Add all required fields to User and Message
 const typeDefs = gql`
   type User {
     username: String!
+    password: String!
     firstName: String!
     lastName: String!
   }
 
   type Message {
-    sender: User!
+    sender: User
     message: String
   }
 
@@ -36,45 +38,55 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(username: String!, firstName: String!, lastName: String!): User
-    addMessage(sender: String!, message: String): Message
+    addUser(username: String!, password: String!, firstName: String!, lastName: String!): User
+    addMessage(username: String, message: String): Message
   }
 `
 
-//Temporary user. May delete
-const user = {
-  username: 'UserNameTemp',
-  firstName: 'FirstNameTemp',
-  lastName: 'LastNameTemp'
-}
-
-//Temporary array of. May delete
-let users = [user]
-
-//Temporary message. May delete
-const message = {
-  sender: user,
-  message: 'Hello world!'
-}
-
-//Temporary array of messages. May delete
-let messages = [message]
-
 //TODO move to the file resolvers in the folder graphql.
+//Add required queries and mutations.
+
 const resolvers = {
   Query: {
-    allUsers: () => users,
-    allMessages: () => messages
+    allUsers: (root, args) => {
+      return User.find({})
+    },
+    allMessages: (root, args) => {
+      return Message.find({})
+    }
   },
   Mutation: {
-    addUser: (root, args) => {
-      const newUser = { ...args }
-      users = users.concat(newUser)
+    addUser: async (root, args) => {
+      const newUser = new User({ ...args })
+      console.log(newUser)
+
+      try {
+        await newUser.save()
+      } catch (error) {
+        throw new UserInputError(error.message, {
+          invalidArgs: args
+        })
+      }
+
       return newUser
     },
-    addMessage: (root, args) => {
-      const newMessage = { ...args }
-      messages = messages.concat(newMessage)
+    addMessage: async (root, args) => {
+      const user = await User.findOne({ username: args.username })
+      console.log(user)
+      if (!user) {
+        return null
+      }
+
+      const newMessage = new Message({ sender: user, ...args })
+      console.log(newMessage)
+
+      try {
+        await newMessage.save()
+      } catch (error) {
+        throw new UserInputError(error.message, {
+          invalidArgs: args
+        })
+      }
       return newMessage
     }
   }
