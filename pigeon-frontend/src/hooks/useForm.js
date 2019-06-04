@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect } from 'react'
 
 const useForm = (callback, validate) => {
   const [values, setValues] = useState({ touchedInputs: {} })
@@ -15,7 +15,7 @@ const useForm = (callback, validate) => {
     }
   }, [errors])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setErrors(validate(values))
   }, [values])
 

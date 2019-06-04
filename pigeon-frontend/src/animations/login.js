@@ -40,6 +40,7 @@ export const animateHeader = () => {
         targets: '.login-page-wrapper header',
         translateY: ['-15vh', '0vh'],
         opacity: [0, 1],
+        duration: 700,
         easing: 'easeInOutBack'
       },
       300
