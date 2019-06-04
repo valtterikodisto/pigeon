@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
+
+import { animateHeader, animateLoginRegister } from '../../animations/login'
 import './Login.css'
 import logo from '../../pictures/pigeon-logo.svg'
 
@@ -10,6 +12,14 @@ const Login = () => {
   const toggleLoginRegisterButton = () => {
     setLoginHidden(!loginHidden)
   }
+
+  useEffect(() => {
+    animateHeader()
+  }, [])
+
+  useEffect(() => {
+    animateLoginRegister()
+  }, [loginHidden])
 
   const loginRegisterSection = () => {
     if (loginHidden) {
