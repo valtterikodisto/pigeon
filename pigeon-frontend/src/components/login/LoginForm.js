@@ -11,7 +11,7 @@ const LoginForm = () => {
 
   return (
     <div className="login-section">
-      <div class="form-header">
+      <div className="form-header">
         <p>
           Log in to <span>Pigeon</span>
         </p>
