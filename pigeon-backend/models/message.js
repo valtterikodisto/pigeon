@@ -6,7 +6,7 @@ const schema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
-  timestapn: {
+  timestamp: {
     type: Date
   },
   message: {
