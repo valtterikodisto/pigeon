@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 
 const User = require('../models/user')
 const Message = require('../models/message')
-const Group = require('../models/group')
+const Chat = require('../models/chat')
 
 //Add required queries and mutations.
 

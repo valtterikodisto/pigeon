@@ -5,8 +5,13 @@ const typeDefs = gql`
     username: String!
     firstName: String!
     lastName: String!
-    groups: [Group]
+    chats: [Chat]
+    friendships: [Friendship]
     id: ID!
+  }
+
+  type Friendship {
+    chat: Chat!
   }
 
   type Token {
@@ -18,9 +23,9 @@ const typeDefs = gql`
     message: String
   }
 
-  type Group {
-    name: String!
-    users: [User]
+  type Chat {
+    name: String
+    users: [User!]!
     messages: [Message]
   }
 

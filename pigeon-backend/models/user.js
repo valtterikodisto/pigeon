@@ -25,10 +25,16 @@ const schema = new mongoose.Schema({
   lastSeen: {
     type: Date
   },
-  groups: [
+  chats: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Group'
+      ref: 'Chat'
+    }
+  ],
+  friendships: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Friendship '
     }
   ]
 })
