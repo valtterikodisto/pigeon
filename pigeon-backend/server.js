@@ -1,30 +1,16 @@
 require('dotenv').config()
+const JWT_SECRET = process.env.SECRET
 
 const { ApolloServer } = require('apollo-server')
-const mongoose = require('mongoose')
+const mongo = require('./mongo')
 const jwt = require('jsonwebtoken')
 
 const typeDefs = require('./graphql/typedefs')
+const resolvers = require('./graphql/resolvers')
 
 const User = require('./models/user')
 
-const resolvers = require('./graphql/resolvers')
-
-mongoose.set('useFindAndModify', false)
-
-const MONGODB_URI = process.env.MONGODB_URI
-const JWT_SECRET = process.env.SECRET
-
-console.log('connecting to ', MONGODB_URI)
-
-mongoose
-  .connect(MONGODB_URI, { useNewUrlParser: true })
-  .then(() => {
-    console.log('connected to MongoDB')
-  })
-  .catch(error => {
-    console.log('Error connecting to MongDB: ', error.message)
-  })
+mongo.connect()
 
 const server = new ApolloServer({
   typeDefs,
