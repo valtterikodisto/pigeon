@@ -1,4 +1,4 @@
-const { UserInputError } = require('apollo-server')
+const { UserInputError, ValidationError } = require('apollo-server')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -27,17 +27,28 @@ const resolvers = {
       const saltRounds = 10
       const password = await bcrypt.hash(args.password, saltRounds)
       const newUser = new User({ ...args, password })
-      console.log(newUser)
 
       try {
-        await newUser.save()
-      } catch (error) {
-        throw new UserInputError(error.message, {
-          invalidArgs: args
-        })
-      }
+        const user = await newUser.save()
+        if (user) console.log(`User ${user.username} created`)
 
-      return newUser
+        const userForToken = {
+          username: user.username,
+          id: user._id
+        }
+
+        return await { value: jwt.sign(userForToken, JWT_SECRET) }
+      } catch (error) {
+        console.log('error:', error.name)
+
+        if (error.name === 'MongoError') {
+          throw new ValidationError('Username already taken')
+        } else {
+          throw new UserInputError(error.message, {
+            invalidArgs: args
+          })
+        }
+      }
     },
     login: async (root, args) => {
       const user = await User.findOne({ username: args.username })

@@ -3,11 +3,18 @@ import FormInput from './FormInput'
 import useForm from '../../hooks/useForm'
 import validateRegister from '../../utils/validateRegister'
 
-const LoginForm = () => {
+const LoginForm = ({ register, registerError }) => {
   // What we will do after successful login
-  const callback = () => console.log('User registered')
+  const callback = () =>
+    register(values.username, values.password, values.firstName, values.lastName)
 
   const { values, errors, handleChange, handleSubmit } = useForm(callback, validateRegister)
+
+  const error = () => {
+    if (registerError) {
+      return <p>ERROR</p>
+    }
+  }
 
   return (
     <div className="register-section">
@@ -46,6 +53,7 @@ const LoginForm = () => {
           onChange={handleChange}
           values={values}
           errors={errors}
+          error={registerError ? 'Already taken' : ''}
         />
         <div className="form-multiple-group">
           <FormInput
@@ -58,7 +66,7 @@ const LoginForm = () => {
             errors={errors}
           />
           <FormInput
-            label="Confirm password"
+            label="Confirm it"
             id="register-confirmPassword"
             type="password"
             name="confirmPassword"

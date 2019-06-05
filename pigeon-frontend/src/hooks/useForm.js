@@ -7,10 +7,11 @@ const useForm = (callback, validate) => {
 
   useEffect(() => {
     if (isSubmitting && Object.keys(errors).length === 0) {
-      console.log('No validation errors')
+      console.log('No frontend validation errors')
       callback()
+      setIsSubmitting(false)
     } else if (isSubmitting) {
-      console.log('There was validation errors:', errors)
+      console.log('There was frontend validation errors:', errors)
       setIsSubmitting(false)
     }
   }, [errors])

@@ -1,10 +1,12 @@
 import React from 'react'
 
-const FormInput = ({ label, id, type, name, onChange, values, errors }) => {
+const FormInput = ({ label, id, type, name, onChange, values, errors, error }) => {
   const hasError = errors[name] && values.touchedInputs[name]
 
-  const error = () => {
-    if (hasError) {
+  const errorMessage = () => {
+    if (error) {
+      return <div className="form-error-message">{error}</div>
+    } else if (hasError) {
       return <div className="form-error-message">{errors[name]}</div>
     }
   }
@@ -14,13 +16,13 @@ const FormInput = ({ label, id, type, name, onChange, values, errors }) => {
       <label htmlFor={id}>{label}</label>
       <input
         id={id}
-        className={hasError ? 'form-error' : ''}
+        className={hasError || error ? 'form-error' : ''}
         type={type}
         name={name}
         onChange={onChange}
         value={values[name] || ''}
       />
-      {error()}
+      {errorMessage()}
     </div>
   )
 }

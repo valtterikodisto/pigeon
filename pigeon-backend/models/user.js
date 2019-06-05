@@ -5,22 +5,26 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    minlength: 3
+    minlength: 3,
+    maxlength: 20
   },
   password: {
     type: String,
     required: true,
-    minlength: 8
+    minlength: 8,
+    maxlength: 100
   },
   firstName: {
     type: String,
     required: true,
-    minglength: 3
+    minlength: 1,
+    maxlength: 20
   },
   lastName: {
     type: String,
     required: true,
-    minglength: 3
+    minlength: 1,
+    maxlength: 20
   },
   lastSeen: {
     type: Date

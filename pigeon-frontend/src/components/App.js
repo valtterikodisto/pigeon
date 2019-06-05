@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Chat from './chat/Chat'
 import Login from './login/Login'
 import './App.css'
 
 const App = props => {
-  return <Login />
+  const [token, setToken] = useState(null)
+
+  const changeToken = token => setToken(token)
+
+  if (!token) {
+    return <Login token={token} setToken={changeToken} />
+  }
+
+  return <div>You have logged in</div>
 }
 
 export default App

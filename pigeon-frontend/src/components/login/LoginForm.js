@@ -3,9 +3,9 @@ import FormInput from './FormInput'
 import useForm from '../../hooks/useForm'
 import validateLogin from '../../utils/validateLogin'
 
-const LoginForm = () => {
+const LoginForm = ({ login, loginError }) => {
   // What we will do after successful login
-  const callback = () => console.log('User logged in')
+  const callback = () => login(values.username, values.password)
 
   const { values, errors, handleChange, handleSubmit } = useForm(callback, validateLogin)
 
@@ -26,6 +26,7 @@ const LoginForm = () => {
           onChange={handleChange}
           values={values}
           errors={errors}
+          error={loginError ? 'Invalid username or password' : ''}
         />
         <FormInput
           label="Password"
@@ -35,6 +36,7 @@ const LoginForm = () => {
           onChange={handleChange}
           values={values}
           errors={errors}
+          error={loginError ? 'Invalid username or password' : ''}
         />
         <div className="form-group">
           <button className="form-submit-button" type="submit">
