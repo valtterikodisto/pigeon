@@ -35,6 +35,9 @@
   align-content: center;
   cursor: pointer;
   z-index: 999;
+
+  font-family: 'Baloo', cursive;
+  font-size: 3vh;
 }
 
 .menu {
@@ -45,6 +48,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  font-family: 'Baloo', cursive;
   background: #52cc99;
   opacity: 0;
   z-index: 99;
