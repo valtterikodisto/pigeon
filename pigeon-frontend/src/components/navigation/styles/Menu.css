@@ -1,0 +1,51 @@
+.menu-button {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 6vh;
+  grid-row-gap: 1vh;
+  justify-items: end;
+  cursor: pointer;
+}
+
+.rectangle {
+  height: 6px;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.menu-rectangle {
+  display: grid;
+  justify-content: end;
+  background: white;
+}
+
+.menu-rectangle:nth-child(2) {
+  width: 80%;
+}
+
+.menu-rectangle:nth-child(3) {
+  width: 60%;
+}
+
+.menu-close-button {
+  display: grid;
+  grid-template-rows: 1fr;
+  justify-items: end;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.menu {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #52cc99;
+  opacity: 0;
+  z-index: 99;
+}

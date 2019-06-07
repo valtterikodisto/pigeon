@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { gql } from 'apollo-boost'
 import { useApolloClient, useMutation } from 'react-apollo-hooks'
 
-import Header from './Header'
+import Navigation from '../navigation/Navigation'
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
+import Animation from '../animation/Animation'
 
+import {
+  handleLoginError,
+  handleRegisterError
+} from '../../helpers/errorhandlers/loginErrorHandler'
 import { animateHeader, animateLoginRegister } from '../../animations/login'
 import './Login.css'
 
@@ -37,20 +42,16 @@ const Login = ({ token, setToken }) => {
   const login = useMutation(LOGIN)
   const register = useMutation(REGISTER)
 
-  console.log('token:', token)
-
   const submitLogin = async (username, password) => {
     try {
       const { data } = await login({ variables: { username, password } })
       setToken(data.login.value)
     } catch (error) {
-      handleLoginError(error)
+      const invalidCredentials = handleLoginError(error)
+      if (invalidCredentials) {
+        setLoginError(true)
+      }
     }
-  }
-
-  const handleLoginError = error => {
-    console.log(error)
-    setLoginError(true)
   }
 
   const submitRegister = async (username, password, firstName, lastName) => {
@@ -58,13 +59,10 @@ const Login = ({ token, setToken }) => {
       const { data } = await register({ variables: { username, password, firstName, lastName } })
       setToken(data.addUser.value)
     } catch (error) {
-      handleRegisterError(error)
-    }
-  }
-
-  const handleRegisterError = error => {
-    if (error && error.message.toLowerCase().includes('username already taken')) {
-      setRegisterError(true)
+      const usernameTaken = handleRegisterError(error)
+      if (usernameTaken) {
+        setRegisterError(true)
+      }
     }
   }
 
@@ -73,14 +71,6 @@ const Login = ({ token, setToken }) => {
     setLoginError(false)
     setRegisterError(false)
   }
-
-  useEffect(() => {
-    animateHeader()
-  }, [])
-
-  useEffect(() => {
-    animateLoginRegister()
-  }, [loginHidden])
 
   const loginRegisterSection = () => {
     if (loginHidden) {
@@ -91,8 +81,14 @@ const Login = ({ token, setToken }) => {
   }
 
   return (
-    <div className="login-page-wrapper">
-      <Header handleClick={toggleLoginRegisterButton} loginHidden={loginHidden} />
+    <div className="page-wrapper">
+      <Animation animation={animateHeader} />
+      <Animation animation={animateLoginRegister} effectDependencies={[loginHidden]} />
+      <Navigation
+        token={token}
+        handleLoginButton={toggleLoginRegisterButton}
+        handleRegisterButton={toggleLoginRegisterButton}
+      />
       <div className="login-register-section-wrapper">{loginRegisterSection()}</div>
     </div>
   )

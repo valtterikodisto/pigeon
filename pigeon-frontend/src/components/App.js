@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import Chat from './chat/Chat'
 import Login from './login/Login'
+import Profile from './profile/Profile'
 import './App.css'
 
 const App = props => {
@@ -13,7 +14,7 @@ const App = props => {
     return <Login token={token} setToken={changeToken} />
   }
 
-  return <div>You have logged in</div>
+  return <Profile token={token} />
 }
 
 export default App

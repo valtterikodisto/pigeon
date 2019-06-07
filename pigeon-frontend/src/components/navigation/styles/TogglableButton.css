@@ -1,0 +1,36 @@
+.togglable-button-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.togglable-button-wrapper > button {
+  border: none;
+  padding: 1vh 1.5vh;
+  font-family: inherit;
+  font-weight: 600;
+  background: #ff7e66;
+  outline: none;
+}
+
+.togglable-button-wrapper > button:hover {
+  filter: brightness(92%);
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+
+.togglable-button-wrapper > button:disabled {
+  background: #a9a9a9;
+}
+
+.togglable-button-wrapper > button:disabled:hover {
+  filter: none;
+  cursor: default;
+}
+
+.togglable-button-left {
+  border-radius: 2em 0 0 2em;
+}
+
+.togglable-button-right {
+  border-radius: 0 2em 2em 0;
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import FormInput from './FormInput'
 import useForm from '../../hooks/useForm'
-import validateRegister from '../../utils/validateRegister'
+import validateRegister from '../../helpers/validators/validateRegister'
 
 const LoginForm = ({ register, registerError }) => {
   // What we will do after successful login

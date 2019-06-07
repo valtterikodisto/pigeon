@@ -37,7 +37,7 @@ export const animateHeader = () => {
   timeline
     .add(
       {
-        targets: '.login-page-wrapper header',
+        targets: '.navigation',
         translateY: ['-15vh', '0vh'],
         opacity: [0, 1],
         duration: 700,
@@ -51,6 +51,6 @@ export const animateHeader = () => {
         translateX: [-100, 0],
         opacity: [0, 1]
       },
-      1000
+      900
     )
 }

@@ -14,11 +14,11 @@ const useForm = (callback, validate) => {
       console.log('There was frontend validation errors:', errors)
       setIsSubmitting(false)
     }
-  }, [errors])
+  }, [errors, callback, isSubmitting])
 
   useLayoutEffect(() => {
     setErrors(validate(values))
-  }, [values])
+  }, [values, validate])
 
   const handleSubmit = event => {
     if (event) {

@@ -56,7 +56,7 @@ const resolvers = {
         user === null ? false : await bcrypt.compare(args.password, user.password)
 
       if (!authSuccessful) {
-        throw new UserInputError('Invalid username or password')
+        throw new UserInputError('Invalid credentials')
       }
 
       const userForToken = {
