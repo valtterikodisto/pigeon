@@ -31,6 +31,7 @@ const typeDefs = gql`
 
   type Query {
     currentUser: User
+    findUser(id: ID!): User
     allUsers: [User]!
     allMessages: [Message]!
   }

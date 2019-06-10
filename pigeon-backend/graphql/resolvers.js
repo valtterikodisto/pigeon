@@ -15,6 +15,10 @@ const resolvers = {
     currentUser: (root, args, context) => {
       return context.currentUser
     },
+    findUser: (root, args, context) => {
+      //TODO Add validation for who can search for users.
+      return (user = User.findById(args.id))
+    },
     allUsers: (root, args) => {
       return User.find({})
     },
