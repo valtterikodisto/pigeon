@@ -46,6 +46,7 @@ const typeDefs = gql`
     addMessage(username: String, message: String): Message
     addChat(name: String): Chat
     addUserToChat(chatId: ID!, userId: ID!): User
+    editChatName(chatId: ID!, name: String!): Chat
   }
 `
 module.exports = typeDefs

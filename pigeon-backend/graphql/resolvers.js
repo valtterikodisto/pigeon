@@ -141,6 +141,22 @@ const resolvers = {
         console.log('error:', error.name)
       }
       return user
+    },
+    editChatName: async (root, args, context) => {
+      const chat = await Chat.findById(args.chatId)
+      if (!chat) {
+        throw new UserInputError('Chat not found')
+      }
+
+      chat.name = args.name
+
+      try {
+        chat.save()
+      } catch (error) {
+        console.log('error:', error.message)
+      }
+
+      return chat
     }
   }
 }
