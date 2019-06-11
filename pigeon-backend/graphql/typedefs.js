@@ -25,8 +25,9 @@ const typeDefs = gql`
 
   type Chat {
     name: String
-    users: [User!]!
+    users: [User]
     messages: [Message]
+    id: ID!
   }
 
   type Query {
@@ -34,12 +35,16 @@ const typeDefs = gql`
     findUser(id: ID!): User
     allUsers: [User]!
     allMessages: [Message]!
+    allChats: [Chat]!
+    findChat(id: ID!): Chat
+    findChatUsers(id: ID!): [User]
   }
 
   type Mutation {
     addUser(username: String!, password: String!, firstName: String!, lastName: String!): Token
     login(username: String!, password: String!): Token
     addMessage(username: String, message: String): Message
+    addChat(name: String): Chat
   }
 `
 module.exports = typeDefs

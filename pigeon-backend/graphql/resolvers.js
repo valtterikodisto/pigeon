@@ -15,15 +15,33 @@ const resolvers = {
     currentUser: (root, args, context) => {
       return context.currentUser
     },
-    findUser: (root, args, context) => {
-      //TODO Add validation for who can search for users.
-      return (user = User.findById(args.id))
+    findUser: async (root, args, context) => {
+      if (!context.currentUser) {
+        return null
+      }
+      return await User.findById(args.id)
     },
-    allUsers: (root, args) => {
-      return User.find({})
+    allUsers: async (root, args) => {
+      const users = await User.find({}).populate('chats')
+      return users
     },
-    allMessages: (root, args) => {
-      return Message.find({})
+    allMessages: async (root, args) => {
+      return await Message.find({})
+    },
+    allChats: (root, args, context) => {
+      return Chat.find({}).populate('users')
+    },
+    findChat: (root, args, context) => {
+      if (!context.currentUser) {
+        return null
+      }
+      return Chat.findById(args.id)
+    },
+    findChatUsers: (root, args, context) => {
+      if (!context.currentUser) {
+        return null
+      }
+      return Chat.findById(args.id).users
     }
   },
   Mutation: {
@@ -88,6 +106,25 @@ const resolvers = {
         })
       }
       return newMessage
+    },
+    addChat: async (root, args, { currentUser }) => {
+      if (!currentUser) {
+        return null
+      }
+      const users = [currentUser]
+      console.log(users)
+      const newChat = new Chat({ ...args, users: users })
+      console.log(newChat)
+      try {
+        await newChat.save()
+        currentUser.chats = currentUser.chats.concat(newChat)
+        await currentUser.save()
+      } catch (error) {
+        throw new UserInputError(error.message, {
+          invalidArgs: context
+        })
+      }
+      return newChat
     }
   }
 }
