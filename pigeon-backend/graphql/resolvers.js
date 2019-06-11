@@ -16,31 +16,21 @@ const resolvers = {
       return context.currentUser
     },
     findUser: async (root, args, context) => {
-      if (!context.currentUser) {
-        return null
-      }
       return await User.findById(args.id)
     },
     allUsers: async (root, args) => {
-      const users = await User.find({}).populate('chats')
-      return users
+      return await User.find({}).populate('chats')
     },
     allMessages: async (root, args) => {
       return await Message.find({})
     },
-    allChats: (root, args, context) => {
-      return Chat.find({}).populate('users')
+    allChats: async (root, args, context) => {
+      return await Chat.find({}).populate('users')
     },
     findChat: (root, args, context) => {
-      if (!context.currentUser) {
-        return null
-      }
       return Chat.findById(args.id)
     },
     findChatUsers: (root, args, context) => {
-      if (!context.currentUser) {
-        return null
-      }
       return Chat.findById(args.id).users
     }
   },
@@ -125,6 +115,32 @@ const resolvers = {
         })
       }
       return newChat
+    },
+    addUserToChat: async (root, args, context) => {
+      const chat = await Chat.findById(args.chatId)
+      if (!chat) {
+        throw new UserInputError('Chat not found')
+      }
+
+      const user = await User.findById(args.userId)
+      if (!user) {
+        throw new UserInputError('User not found')
+      }
+
+      if (chat.users.includes(user.id)) {
+        throw new Error('User is already in the chat.')
+      }
+
+      console.log(JSON.stringify(chat))
+      chat.users = chat.users.concat(user.id)
+      user.chats = user.chats.concat(chat.id)
+      try {
+        chat.save()
+        user.save()
+      } catch (error) {
+        console.log('error:', error.name)
+      }
+      return user
     }
   }
 }

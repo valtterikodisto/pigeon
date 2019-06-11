@@ -25,7 +25,7 @@ const typeDefs = gql`
 
   type Chat {
     name: String
-    users: [User]
+    users: [User!]!
     messages: [Message]
     id: ID!
   }
@@ -45,6 +45,7 @@ const typeDefs = gql`
     login(username: String!, password: String!): Token
     addMessage(username: String, message: String): Message
     addChat(name: String): Chat
+    addUserToChat(chatId: ID!, userId: ID!): User
   }
 `
 module.exports = typeDefs
