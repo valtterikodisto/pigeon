@@ -47,6 +47,7 @@ const typeDefs = gql`
     addChat(name: String): Chat
     addUserToChat(chatId: ID!, userId: ID!): User
     editChatName(chatId: ID!, name: String!): Chat
+    addFriendship(friendsId: ID!): Friendship
   }
 `
 module.exports = typeDefs

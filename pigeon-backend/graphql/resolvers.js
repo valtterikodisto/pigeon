@@ -2,11 +2,12 @@ const { UserInputError, ValidationError } = require('apollo-server')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-const User = require('../models/user')
 const Message = require('../models/message')
+const Friendship = require('../models/friendship')
 const Chat = require('../models/chat')
+const User = require('../models/user')
 
-//Add required queries and mutations.
+//Getting users friendships doesn't work. Problem with the mongoose models.
 
 const JWT_SECRET = process.env.SECRET
 
@@ -97,11 +98,11 @@ const resolvers = {
       }
       return newMessage
     },
-    addChat: async (root, args, { currentUser }) => {
-      if (!currentUser) {
-        return null
+    addChat: async (root, args, context) => {
+      if (!context.currentUser) {
+        throw new Error('User not authenticated')
       }
-      const users = [currentUser]
+      const users = [context.currentUser]
       console.log(users)
       const newChat = new Chat({ ...args, users: users })
       console.log(newChat)
@@ -157,6 +158,35 @@ const resolvers = {
       }
 
       return chat
+    },
+    addFriendship: async (root, args, { currentUser }) => {
+      if (!currentUser) {
+        throw new Error('User not authenticated')
+      }
+
+      const friend = await User.findById(args.friendsId)
+      if (!friend) {
+        throw new Error('Friend not found')
+      }
+
+      const users = [currentUser, friend]
+      const newChat = new Chat({ users: users })
+      const newFriendship = new Friendship({ chat: newChat })
+      //console.log(JSON.stringify(newChat))
+      console.log(JSON.stringify(newFriendship))
+
+      try {
+        await newChat.save()
+        await newFriendship.save()
+        currentUser.friendships = currentUser.friendships.concat(newFriendship)
+        friend.friendships = friend.friendships.concat(newFriendship)
+        await currentUser.save()
+        await friend.save()
+      } catch (error) {
+        throw new UserInputError(error.message)
+      }
+
+      return newFriendship
     }
   }
 }
