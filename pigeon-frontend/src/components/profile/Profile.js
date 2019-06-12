@@ -1,45 +1,34 @@
 import React from 'react'
+import { gql } from 'apollo-boost'
+import { useQuery } from 'react-apollo-hooks'
+
 import Navigation from '../navigation/Navigation'
 import ChatPreviewList from './ChatPreviewList'
 
 import './Profile.scss'
 
-const Profile = ({ token }) => {
-  // Dummy data, remove when backend provides this
-  const chats = [
-    {
-      id: 1,
-      name: 'Someon Lastname',
-      users: [],
-      messages: [
-        {
-          sender: {
-            firstName: 'Someone'
-          },
-          message:
-            'Lorem ipsum dolores annuumen porvu dom delaro et tul - Annuumen porvu dom delaro et tul'
+const ALL_CHATS = gql`
+  query {
+    allChats {
+      id
+      name
+      messages {
+        message
+        sender {
+          firstName
         }
-      ]
-    },
-    {
-      id: 2,
-      name: 'Else Lastname',
-      users: [],
-      messages: [
-        {
-          sender: {
-            firstName: 'Else'
-          },
-          message: 'Lorem ipsum dolores annuumen porvu dom delaro et tul'
-        }
-      ]
+      }
     }
-  ]
+  }
+`
+
+const Profile = ({ token }) => {
+  const { data, loading, error } = useQuery(ALL_CHATS)
 
   return (
     <div className="page-wrapper">
       <Navigation token={token} />
-      <ChatPreviewList chats={chats} />
+      <ChatPreviewList chats={data.allChats} loading={loading} error={error} />
     </div>
   )
 }

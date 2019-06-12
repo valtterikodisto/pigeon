@@ -27,6 +27,8 @@ const resolvers = {
     },
     allChats: async (root, args, { currentUser }) => {
       // Loads only the newest message
+      console.log(currentUser)
+
       const user = await User.findById(currentUser.id)
         .populate({
           path: 'chats',
