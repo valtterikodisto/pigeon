@@ -96,9 +96,17 @@ const resolvers = {
 
       return { value: jwt.sign(userForToken, JWT_SECRET) }
     },
+<<<<<<< HEAD
     addMessage: async (root, { chatId, message }, { currentUser }) => {
       if (!currentUser || !currentUser.chats.includes(chatId)) {
         throw new Error('Forbidden')
+=======
+    addMessage: async (root, args) => {
+      const user = await User.findOne({ username: args.username })
+      console.log(user)
+      if (!user) {
+        throw new Error('User not found')
+>>>>>>> 4a23a500c272252a7c42f3f7cc47ff4d459cef01
       }
 
       const chat = await Chat.findById(chatId)

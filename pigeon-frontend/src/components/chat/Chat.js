@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useQuery } from 'react-apollo-hooks'
+import { useQuery, useMutation } from 'react-apollo-hooks'
 import { gql } from 'apollo-boost'
 
 import MessageWindow from './MessageWindow'
@@ -22,6 +22,15 @@ const ALL_MESSAGES = gql`
     }
   }
 `
+const ADD_MESSAGE = gql`
+  mutation addMessage($username: String!, $message: String!) {
+    addMessage(username: $username, message: $message) {
+      sender {
+        username
+      }
+    }
+  }
+`
 
 const Chat = props => {
   const [name, setName] = useState('')
@@ -36,6 +45,9 @@ const Chat = props => {
     }
   }, [data, error, loading])
 
+  const addMessage = useMutation(ADD_MESSAGE, {
+    refetchQueries: [{ query: ALL_MESSAGES }]
+  })
   /*
   useEffect(() => {
     groupService
@@ -68,7 +80,7 @@ const Chat = props => {
       <Header groupName={name} users={users} />
       <div className="main">
         <MessageWindow messages={messages} currentUser={currentUser} />
-        <MessageForm />
+        <MessageForm addMessage={addMessage} />
       </div>
     </div>
   )
