@@ -27,6 +27,8 @@ const resolvers = {
     },
     allChats: async (root, args, { currentUser }) => {
       // Loads only the newest message
+      console.log(currentUser)
+
       const user = await User.findById(currentUser.id)
         .populate({
           path: 'chats',
@@ -96,17 +98,9 @@ const resolvers = {
 
       return { value: jwt.sign(userForToken, JWT_SECRET) }
     },
-<<<<<<< HEAD
     addMessage: async (root, { chatId, message }, { currentUser }) => {
       if (!currentUser || !currentUser.chats.includes(chatId)) {
         throw new Error('Forbidden')
-=======
-    addMessage: async (root, args) => {
-      const user = await User.findOne({ username: args.username })
-      console.log(user)
-      if (!user) {
-        throw new Error('User not found')
->>>>>>> 4a23a500c272252a7c42f3f7cc47ff4d459cef01
       }
 
       const chat = await Chat.findById(chatId)
@@ -130,11 +124,11 @@ const resolvers = {
       }
       return newMessage
     },
-    addChat: async (root, args, context) => {
-      if (!context.currentUser) {
+    addChat: async (root, args, { currentUser }) => {
+      if (!currentUser) {
         throw new Error('User not authenticated')
       }
-      const users = [context.currentUser]
+      const users = [currentUser]
       console.log(users)
       const newChat = new Chat({ ...args, users: users })
       console.log(newChat)

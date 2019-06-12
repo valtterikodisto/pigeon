@@ -1,8 +1,18 @@
 import React from 'react'
+
 import ChatPreview from './ChatPreview'
 
-const ChatPreviewList = ({ chats }) => {
+const ChatPreviewList = ({ chats, loading, error }) => {
+  if (error) {
+    return <div>ERROR {error.message}</div>
+  }
   const chatRow = () => {
+    if (loading) {
+      console.log('LOADING')
+
+      return <div>Loading...</div>
+    }
+
     return chats.map(chat => <ChatPreview key={chat.id} chat={chat} />)
   }
 
