@@ -83,7 +83,7 @@ const resolvers = {
       const user = await User.findOne({ username: args.username })
       console.log(user)
       if (!user) {
-        return null
+        throw new Error('User not found')
       }
 
       const newMessage = new Message({ sender: user, ...args })
