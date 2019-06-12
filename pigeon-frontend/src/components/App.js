@@ -14,7 +14,7 @@ const App = props => {
     return <Login token={token} setToken={changeToken} />
   }
 
-  return <Chat token={token} />
+  return <Profile token={token} />
 }
 
 export default App

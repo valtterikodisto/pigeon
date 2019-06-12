@@ -44,7 +44,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, password: String!, firstName: String!, lastName: String!): Token
     login(username: String!, password: String!): Token
-    addMessage(username: String, message: String): Message
+    addMessage(chatId: ID!, message: String!): Message
     addChat(name: String): Chat
     addUserToChat(chatId: ID!, userId: ID!): User
     editChatName(chatId: ID!, name: String!): Chat

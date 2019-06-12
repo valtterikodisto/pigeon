@@ -25,8 +25,25 @@ const resolvers = {
     allMessages: async (root, args) => {
       return await Message.find({}).populate('sender')
     },
-    allChats: async (root, args, context) => {
-      return await Chat.find({}).populate('users')
+    allChats: async (root, args, { currentUser }) => {
+      // Loads only the newest message
+      const user = await User.findById(currentUser.id)
+        .populate({
+          path: 'chats',
+          populate: {
+            path: 'messages',
+            options: {
+              sort: { timestamp: -1 },
+              limit: 1
+            },
+            populate: {
+              path: 'sender'
+            }
+          }
+        })
+        .populate('friendship') // Get chats from here and combine
+
+      return user.chats
     },
     findChat: (root, args, context) => {
       return Chat.findById(args.id)
@@ -79,18 +96,25 @@ const resolvers = {
 
       return { value: jwt.sign(userForToken, JWT_SECRET) }
     },
-    addMessage: async (root, args) => {
-      const user = await User.findOne({ username: args.username })
-      console.log(user)
-      if (!user) {
-        return null
+    addMessage: async (root, { chatId, message }, { currentUser }) => {
+      if (!currentUser || !currentUser.chats.includes(chatId)) {
+        throw new Error('Forbidden')
       }
 
-      const newMessage = new Message({ sender: user, ...args })
-      console.log(newMessage)
+      const chat = await Chat.findById(chatId)
+
+      const newMessage = new Message({
+        chat,
+        message,
+        sender: currentUser.id,
+        timestamp: new Date()
+      })
+
+      chat.messages = chat.messages.concat(newMessage)
 
       try {
         await newMessage.save()
+        await chat.save()
       } catch (error) {
         throw new UserInputError(error.message, {
           invalidArgs: args
