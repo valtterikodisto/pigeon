@@ -9,11 +9,11 @@ const App = props => {
   const [token, setToken] = useState(null)
 
   const changeToken = token => setToken(token)
-
+  /*
   if (!token) {
     return <Login token={token} setToken={changeToken} />
   }
-
+  */
   return <Chat token={token} />
 }
 

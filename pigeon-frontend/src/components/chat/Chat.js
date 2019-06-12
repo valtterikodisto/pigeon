@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { useQuery } from 'react-apollo-hooks'
+import { gql } from 'apollo-boost'
 
 import MessageWindow from './MessageWindow'
 import MessageForm from './MessageForm'
@@ -7,13 +9,33 @@ import Header from './Header'
 import groupService from '../../services/groups'
 import userService from '../../services/user'
 
+const ALL_MESSAGES = gql`
+  {
+    allMessages {
+      message
+      sender {
+        username
+        firstName
+        lastName
+      }
+      id
+    }
+  }
+`
+
 const Chat = props => {
   const [name, setName] = useState('')
   const [messages, setMessages] = useState([])
   const [users, setUsers] = useState([])
   const [currentUser, setCurrentUser] = useState({})
-  console.log(props.token)
-  //Disabled for tertingpurposes.
+  const { data, error, loading } = useQuery(ALL_MESSAGES)
+
+  useEffect(() => {
+    if (!error && !loading) {
+      setMessages(data.allMessages)
+    }
+  }, [data, error, loading])
+
   /*
   useEffect(() => {
     groupService
