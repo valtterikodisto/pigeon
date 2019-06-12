@@ -21,6 +21,7 @@ const typeDefs = gql`
   type Message {
     sender: User
     message: String
+    id: ID!
   }
 
   type Chat {

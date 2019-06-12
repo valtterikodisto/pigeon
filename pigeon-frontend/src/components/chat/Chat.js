@@ -7,12 +7,14 @@ import Header from './Header'
 import groupService from '../../services/groups'
 import userService from '../../services/user'
 
-const Chat = () => {
+const Chat = props => {
   const [name, setName] = useState('')
   const [messages, setMessages] = useState([])
   const [users, setUsers] = useState([])
   const [currentUser, setCurrentUser] = useState({})
-
+  console.log(props.token)
+  //Disabled for tertingpurposes.
+  /*
   useEffect(() => {
     groupService
       .get()
@@ -38,7 +40,7 @@ const Chat = () => {
       })
       .catch(error => console.log('ERROR'))
   }, [])
-
+  */
   return (
     <div className="container">
       <Header groupName={name} users={users} />

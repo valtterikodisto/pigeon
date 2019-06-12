@@ -23,7 +23,7 @@ const resolvers = {
       return await User.find({}).populate('chats')
     },
     allMessages: async (root, args) => {
-      return await Message.find({})
+      return await Message.find({}).populate('sender')
     },
     allChats: async (root, args, context) => {
       return await Chat.find({}).populate('users')
