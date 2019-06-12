@@ -6,7 +6,6 @@ const MessageWindow = ({ messages, currentUser }) => {
     messages.map(message => (
       <Message key={message.id} message={message} currentUser={currentUser} />
     ))
-
   return <div className="pigeon-messages-container">{messageRows()}</div>
 }
 
