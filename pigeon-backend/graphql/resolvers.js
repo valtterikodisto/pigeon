@@ -1,4 +1,7 @@
 const { UserInputError, ValidationError } = require('apollo-server')
+const { GraphQLScalarType } = require('graphql')
+const { Kind } = require('graphql/language')
+
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -27,7 +30,7 @@ const resolvers = {
     },
     allChats: async (root, args, { currentUser }) => {
       // Loads only the newest message
-      console.log(currentUser)
+      console.log(`User '${currentUser.username}' requested all chats`)
 
       const user = await User.findById(currentUser.id)
         .populate({
@@ -39,13 +42,46 @@ const resolvers = {
               limit: 1
             },
             populate: {
-              path: 'sender'
+              path: 'sender',
+              select: 'firstName'
             }
           }
         })
-        .populate('friendship') // Get chats from here and combine
+        .populate({
+          path: 'friendships',
+          populate: {
+            path: 'chat',
+            populate: [
+              {
+                path: 'users',
+                select: 'firstName lastName'
+              },
+              {
+                path: 'messages',
+                options: {
+                  sort: { timestamp: -1 },
+                  limit: 1
+                },
+                populate: {
+                  path: 'sender',
+                  select: 'firstName'
+                }
+              }
+            ]
+          }
+        })
 
-      return user.chats
+      const friendChats = user.friendships.map(({ chat }) => {
+        const friend = chat.users[0].id === currentUser.id ? chat.users[1] : chat.users[0]
+        chat.name = `${friend.firstName} ${friend.lastName}`
+
+        return chat
+      })
+
+      const combined = [...user.chats, ...friendChats]
+      console.log(`Returned ${combined.length} chats to user '${currentUser.username}'`)
+
+      return combined
     },
     findChat: (root, args, context) => {
       return Chat.findById(args.id)
@@ -99,11 +135,11 @@ const resolvers = {
       return { value: jwt.sign(userForToken, JWT_SECRET) }
     },
     addMessage: async (root, { chatId, message }, { currentUser }) => {
-      if (!currentUser || !currentUser.chats.includes(chatId)) {
+      const chat = await Chat.findById(chatId)
+
+      if (!currentUser || !chat.users.includes(currentUser.id)) {
         throw new Error('Forbidden')
       }
-
-      const chat = await Chat.findById(chatId)
 
       const newMessage = new Message({
         chat,
@@ -122,6 +158,9 @@ const resolvers = {
           invalidArgs: args
         })
       }
+
+      console.log(`Message added to chat ${chatId}`)
+
       return newMessage
     },
     addChat: async (root, args, { currentUser }) => {
@@ -185,12 +224,12 @@ const resolvers = {
 
       return chat
     },
-    addFriendship: async (root, args, { currentUser }) => {
+    addFriendship: async (root, { friendId }, { currentUser }) => {
       if (!currentUser) {
         throw new Error('User not authenticated')
       }
 
-      const friend = await User.findById(args.friendsId)
+      const friend = await User.findById(friendId)
       if (!friend) {
         throw new Error('Friend not found')
       }
@@ -198,7 +237,7 @@ const resolvers = {
       const users = [currentUser, friend]
       const newChat = new Chat({ users: users })
       const newFriendship = new Friendship({ chat: newChat })
-      //console.log(JSON.stringify(newChat))
+
       console.log(JSON.stringify(newFriendship))
 
       try {
@@ -214,7 +253,23 @@ const resolvers = {
 
       return newFriendship
     }
-  }
+  },
+  Date: new GraphQLScalarType({
+    name: 'Date',
+    description: 'Date custom scalar type',
+    parseValue(value) {
+      return new Date(value)
+    },
+    serialize(value) {
+      return value.getTime()
+    },
+    parseLiteral(ast) {
+      if (ast.kind === Kind.INT) {
+        return parseInt(ast.value, 10)
+      }
+      return null
+    }
+  })
 }
 
 module.exports = resolvers

@@ -13,6 +13,14 @@ const ChatPreviewList = ({ chats, loading, error }) => {
       return <div>Loading...</div>
     }
 
+    chats.sort((a, b) => {
+      const dateA = a.messages.length > 0 ? a.messages[0].timestamp : null
+      const dateB = b.messages.length > 0 ? b.messages[0].timestamp : null
+      console.log('A:', a)
+
+      return dateB - dateA
+    })
+
     return chats.map(chat => <ChatPreview key={chat.id} chat={chat} />)
   }
 

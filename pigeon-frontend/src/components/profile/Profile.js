@@ -14,6 +14,7 @@ const ALL_CHATS = gql`
       name
       messages {
         message
+        timestamp
         sender {
           firstName
         }

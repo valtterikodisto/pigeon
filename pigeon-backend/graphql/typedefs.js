@@ -1,6 +1,8 @@
 const { gql } = require('apollo-server')
 
 const typeDefs = gql`
+  scalar Date
+
   type User {
     username: String!
     firstName: String!
@@ -19,8 +21,9 @@ const typeDefs = gql`
   }
 
   type Message {
-    sender: User
-    message: String
+    sender: User!
+    message: String!
+    timestamp: Date!
     id: ID!
   }
 
@@ -48,7 +51,7 @@ const typeDefs = gql`
     addChat(name: String): Chat
     addUserToChat(chatId: ID!, userId: ID!): User
     editChatName(chatId: ID!, name: String!): Chat
-    addFriendship(friendsId: ID!): Friendship
+    addFriendship(friendId: ID!): Friendship
   }
 `
 module.exports = typeDefs
