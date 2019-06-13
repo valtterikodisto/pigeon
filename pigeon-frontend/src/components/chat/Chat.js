@@ -23,11 +23,21 @@ const ALL_MESSAGES = gql`
   }
 `
 const ADD_MESSAGE = gql`
-  mutation addMessage($username: String!, $message: String!) {
-    addMessage(username: $username, message: $message) {
+  mutation addMessage($chatId: ID!, $message: String!) {
+    addMessage(chatId: $chatId, message: $message) {
       sender {
         username
       }
+    }
+  }
+`
+
+const CURRENT_USER = gql`
+  {
+    currentUser {
+      username
+      firstName
+      lastName
     }
   }
 `
@@ -37,44 +47,25 @@ const Chat = props => {
   const [messages, setMessages] = useState([])
   const [users, setUsers] = useState([])
   const [currentUser, setCurrentUser] = useState({})
-  const { data, error, loading } = useQuery(ALL_MESSAGES)
+  const { messagesData, messagesError, messagesLoading } = useQuery(ALL_MESSAGES)
+  const { currentUserData, currentUserError, currentUserLoading } = useQuery(CURRENT_USER)
 
   useEffect(() => {
-    if (!error && !loading) {
-      setMessages(data.allMessages)
+    if (!messagesError && !messagesLoading) {
+      setMessages(messagesData.allMessages)
     }
-  }, [data, error, loading])
+  }, [messagesData, messagesError, messagesLoading])
+
+  useEffect(() => {
+    if (!currentUserError && !currentUserError) {
+      setCurrentUser(currentUserData)
+    }
+  }, [currentUserData, currentUserError, currentUserLoading])
 
   const addMessage = useMutation(ADD_MESSAGE, {
     refetchQueries: [{ query: ALL_MESSAGES }]
   })
-  /*
-  useEffect(() => {
-    groupService
-      .get()
-      .then(groups => {
-        groups.forEach(group => {
-          console.log('GROUP:', group)
 
-          setName(group.name)
-          setMessages(group.messages)
-          setUsers(group.users)
-        })
-      })
-      .catch(error => console.log('ERROR'))
-  }, [])
-
-  // Temp solution for getting current user
-  useEffect(() => {
-    userService
-      .getUser()
-      .then(user => {
-        console.log('Logged in as:', user.username)
-        setCurrentUser(user)
-      })
-      .catch(error => console.log('ERROR'))
-  }, [])
-  */
   return (
     <div className="container">
       <Header groupName={name} users={users} />
