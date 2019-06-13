@@ -7,10 +7,10 @@ const MessageForm = props => {
 
   const submit = async e => {
     e.preventDefault()
-
+    const chatId = '123'
     await props.addMessage({
-      //Add username that is found in the database
-      variables: { username: 'kasper', message }
+      //
+      variables: { chatId: chatId, message }
     })
 
     setMessage('')
