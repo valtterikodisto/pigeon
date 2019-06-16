@@ -1,0 +1,44 @@
+@import '../App.scss';
+
+$navigation-height: 10vh;
+$navigation-item-padding: $navigation-height / 6;
+
+.navigation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: $navigation-height;
+  background: $primary-color;
+  color: white;
+}
+
+.logo-wrapper {
+  display: grid;
+  grid-template-columns: $navigation-height 1fr;
+  grid-template-rows: $navigation-height;
+  justify-items: start;
+  align-items: center;
+
+  > img {
+    height: $navigation-height;
+    padding: $navigation-item-padding;
+  }
+
+  > p {
+    font-family: $secondary-font;
+    font-size: 3vh;
+    @include respond-to(mobile) {
+      display: none;
+    }
+  }
+
+  @include respond-to(mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.menu-button-wrapper {
+  display: grid;
+  justify-items: end;
+  align-items: center;
+  padding: $navigation-item-padding;
+}

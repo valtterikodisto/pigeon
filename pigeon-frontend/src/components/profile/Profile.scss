@@ -1,6 +1,4 @@
-$primary-color: #52cc99;
-$secondary-color: #ff7e66;
-$secondary-font: 'Baloo', cursive;
+@import '../App.scss';
 
 .chat-preview-list {
   display: grid;

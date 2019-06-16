@@ -3,7 +3,7 @@ import { useApolloClient } from 'react-apollo-hooks'
 import Menu from './Menu'
 import TogglableButton from './TogglableButton'
 
-import './styles/Navigation.css'
+import './Navigation.scss'
 import logo from '../../pictures/pigeon-logo.svg'
 
 const Navigation = ({ token, setToken, handleLoginButton, handleRegisterButton, logout }) => {
@@ -34,7 +34,7 @@ const Navigation = ({ token, setToken, handleLoginButton, handleRegisterButton, 
     <nav className="navigation">
       <div className="logo-wrapper">
         <img src={logo} alt="pigeon-logo" />
-        <p className="logo-text">Pigeon</p>
+        <p>Pigeon</p>
       </div>
       <div className="menu-button-wrapper">{menu()}</div>
     </nav>

@@ -1,21 +1,23 @@
-/* LOGIN REGISTER WRAPPER */
+@import '../App.scss';
 
 .login-register-section-wrapper {
   display: grid;
   justify-content: center;
   align-content: center;
+
+  > div {
+    display: grid;
+    background: $primary-color;
+    grid-template-columns: minmax(100%, 500px);
+    grid-template-rows: 1fr 5fr;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 5px;
+    box-shadow: -8px 10px 18px rgba(0, 0, 0, 0.15);
+  }
 }
 
-.login-register-section-wrapper > div {
-  display: grid;
-  background: #52cc99;
-  grid-template-columns: minmax(100%, 500px);
-  grid-template-rows: 1fr 5fr;
-  margin: 1em;
-  padding: 1em;
-  border-radius: 5px;
-  box-shadow: -8px 10px 18px rgba(0, 0, 0, 0.15);
-}
+// REFACTOR CODE BELOW
 
 /* LOGIN REGISTER FORM HEADER STYLES */
 
@@ -118,15 +120,6 @@
 /* SMALL SCREEN */
 
 @media screen and (max-width: 300px) {
-  .logo-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-  }
-
-  .logo-text {
-    display: none;
-  }
-
   .form-multiple-group {
     display: grid;
     grid-template-columns: 1fr;

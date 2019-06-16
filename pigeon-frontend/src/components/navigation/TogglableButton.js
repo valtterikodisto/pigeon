@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './styles/TogglableButton.css'
+import './TogglableButton.scss'
 
 const TogglableButton = ({ leftText, rigthText, handleLeftToggle, handleRightToggle }) => {
   const [leftDisabled, setLeftDisabled] = useState(true)
@@ -20,10 +20,10 @@ const TogglableButton = ({ leftText, rigthText, handleLeftToggle, handleRightTog
 
   return (
     <div className="togglable-button-wrapper">
-      <button onClick={leftToggle} className="togglable-button-left" disabled={leftDisabled}>
+      <button onClick={leftToggle} disabled={leftDisabled}>
         {leftText}
       </button>
-      <button onClick={rightToggle} className="togglable-button-right" disabled={!leftDisabled}>
+      <button onClick={rightToggle} disabled={!leftDisabled}>
         {rigthText}
       </button>
     </div>

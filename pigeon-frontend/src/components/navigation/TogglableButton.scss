@@ -1,0 +1,42 @@
+@import '../App.scss';
+
+$navigation-height: 10vh;
+$font-size: $navigation-height / 6;
+
+.togglable-button-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  > button {
+    border: none;
+    padding: $navigation-height / 10 $navigation-height / 10;
+    outline: none;
+    background: $secondary-color;
+    color: white;
+    font-size: $font-size;
+    font-weight: 600;
+
+    &:nth-child(1) {
+      border-radius: 2em 0 0 2em;
+    }
+
+    &:nth-child(2) {
+      border-radius: 0 2em 2em 0;
+    }
+
+    &:hover {
+      filter: brightness(92%);
+      transition-duration: 0.3s;
+      cursor: pointer;
+    }
+
+    &:disabled:hover {
+      filter: none;
+      cursor: default;
+    }
+
+    &:disabled {
+      background: #a9a9a9;
+    }
+  }
+}

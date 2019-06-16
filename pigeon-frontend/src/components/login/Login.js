@@ -12,7 +12,7 @@ import {
   handleRegisterError
 } from '../../helpers/errorhandlers/loginErrorHandler'
 import { animateHeader, animateLoginRegister } from '../../animations/login'
-import './Login.css'
+import './Login.scss'
 
 const LOGIN = gql`
   mutation login($username: String!, $password: String!) {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import './styles/Menu.css'
+import './Menu.scss'
 import { animateMenuOpening } from '../../animations/navigation'
 
 const Menu = ({ handleLogout }) => {
@@ -25,6 +25,8 @@ const Menu = ({ handleLogout }) => {
           </div>
           <div className="menu">
             <ul>
+              <li>Menu Item</li>
+              <li>Menu Item</li>
               <li>
                 <button onClick={handleLogout}>Logout</button>
               </li>
