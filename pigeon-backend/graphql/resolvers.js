@@ -1,4 +1,4 @@
-const { UserInputError, ValidationError } = require('apollo-server')
+const { UserInputError, ValidationError } = require('apollo-server-express')
 const { GraphQLScalarType } = require('graphql')
 const { Kind } = require('graphql/language')
 

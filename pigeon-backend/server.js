@@ -1,31 +1,24 @@
 require('dotenv').config()
-const JWT_SECRET = process.env.SECRET
+const PORT = process.env.PORT || 4000
 
-const { ApolloServer } = require('apollo-server')
+const express = require('express')
+const { ApolloServer } = require('apollo-server-express')
 const mongo = require('./mongo')
-const jwt = require('jsonwebtoken')
+
+mongo.connect()
+const app = express()
 
 const typeDefs = require('./graphql/typedefs')
 const resolvers = require('./graphql/resolvers')
-
-const User = require('./models/user')
-
-mongo.connect()
+const context = require('./graphql/context')
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: async ({ req }) => {
-    const auth = req ? req.headers.authorization : null
-    if (auth && auth.toUpperCase().startsWith('BEARER ')) {
-      const decodedToken = jwt.verify(auth.substring(7), JWT_SECRET)
-      const currentUser = await User.findById(decodedToken.id)
-
-      return { currentUser }
-    }
-  }
+  context
 })
+server.applyMiddleware({ app })
 
-server.listen().then(({ url }) => {
-  console.log(`Server ready at ${url}`)
+app.listen({ port: PORT }, () => {
+  console.log(`Server ready at http://localhost:${PORT}${server.graphqlPath}`)
 })
