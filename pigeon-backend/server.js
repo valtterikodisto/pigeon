@@ -1,6 +1,7 @@
 require('dotenv').config()
 const PORT = process.env.PORT || 4000
 
+const path = require('path')
 const express = require('express')
 const { ApolloServer } = require('apollo-server-express')
 const mongo = require('./mongo')
@@ -18,6 +19,12 @@ const server = new ApolloServer({
   context
 })
 server.applyMiddleware({ app })
+
+app.use(express.static('public'))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+})
 
 app.listen({ port: PORT }, () => {
   console.log(`Server ready at http://localhost:${PORT}${server.graphqlPath}`)
