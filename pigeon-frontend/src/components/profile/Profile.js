@@ -2,6 +2,7 @@ import React from 'react'
 import { gql } from 'apollo-boost'
 import { useQuery } from 'react-apollo-hooks'
 
+import { Transition } from 'react-transition-group'
 import Navigation from '../navigation/Navigation'
 import ChatPreviewList from './ChatPreviewList'
 
@@ -23,13 +24,17 @@ const ALL_CHATS = gql`
   }
 `
 
-const Profile = ({ token }) => {
+const Profile = ({ token, setToken }) => {
   const { data, loading, error } = useQuery(ALL_CHATS)
 
   return (
     <div className="page-wrapper">
-      <Navigation token={token} />
-      <ChatPreviewList chats={data.allChats} loading={loading} error={error} />
+      <Navigation token={token} setToken={setToken} />
+      <Transition>
+        {state => (
+          <ChatPreviewList state={state} chats={data.allChats} loading={loading} error={error} />
+        )}
+      </Transition>
     </div>
   )
 }

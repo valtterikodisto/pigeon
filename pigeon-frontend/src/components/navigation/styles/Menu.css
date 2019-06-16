@@ -53,3 +53,21 @@
   opacity: 0;
   z-index: 99;
 }
+
+.menu > ul {
+  display: grid;
+  height: 100vh;
+  justify-content: center;
+  align-content: center;
+  list-style-type: none;
+}
+
+.menu button {
+  background: white;
+  color: #333333;
+  border: none;
+  border-radius: 5em;
+  font-family: 'Baloo', cursive;
+  font-size: 1.5em;
+  padding: 0.1em 1em;
+}

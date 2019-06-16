@@ -6,7 +6,7 @@ import Profile from './profile/Profile'
 import './App.css'
 
 const App = props => {
-  const [token, setToken] = useState(null)
+  const [token, setToken] = useState(localStorage.getItem('pigeon-token'))
 
   const changeToken = token => setToken(token)
 
@@ -14,7 +14,7 @@ const App = props => {
     return <Login token={token} setToken={changeToken} />
   }
 
-  return <Profile token={token} />
+  return <Profile token={token} setToken={setToken} />
 }
 
 export default App

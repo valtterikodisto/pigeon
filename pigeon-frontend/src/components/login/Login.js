@@ -90,6 +90,7 @@ const Login = ({ token, setToken }) => {
         token={token}
         handleLoginButton={toggleLoginRegisterButton}
         handleRegisterButton={toggleLoginRegisterButton}
+        setToken={setToken}
       />
       <div className="login-register-section-wrapper">{loginRegisterSection()}</div>
     </div>

@@ -9,10 +9,11 @@ $secondary-font: 'Baloo', cursive;
   justify-content: center;
   padding: 1vh 1vw;
 
-  & > div {
+  > div {
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 4fr;
+    opacity: 0;
 
     .profile-icon-wrapper {
       display: grid;
@@ -22,7 +23,7 @@ $secondary-font: 'Baloo', cursive;
       font-family: $secondary-font;
       color: white;
 
-      & > div {
+      > div {
         display: grid;
         align-items: center;
         justify-content: center;
@@ -49,4 +50,9 @@ $secondary-font: 'Baloo', cursive;
       color: #5e5e5e;
     }
   }
+}
+
+.loading {
+  margin: 0 auto;
+  padding-top: 5vh;
 }

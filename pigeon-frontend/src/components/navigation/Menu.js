@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import anime from 'animejs'
 
 import './styles/Menu.css'
-import {
-  animateMenuHoverIn,
-  animateMenuHoverOut,
-  animateMenuOpening,
-  animateMenuClosing
-} from '../../animations/navigation'
+import { animateMenuOpening } from '../../animations/navigation'
 
-const Menu = () => {
+const Menu = ({ handleLogout }) => {
   const [open, setOpen] = useState(null)
 
   useEffect(() => {
@@ -19,11 +13,6 @@ const Menu = () => {
   }, [open])
 
   const handleClick = () => {
-    // if (!open) {
-    //   animateMenuOpening()
-    // } else {
-    //   animateMenuClosing()
-    // }
     setOpen(!open)
   }
 
@@ -34,7 +23,13 @@ const Menu = () => {
           <div className="menu-close-button" onClick={handleClick}>
             CLOSE
           </div>
-          <div className="menu" />
+          <div className="menu">
+            <ul>
+              <li>
+                <button onClick={handleLogout}>Logout</button>
+              </li>
+            </ul>
+          </div>
         </>
       )
     }

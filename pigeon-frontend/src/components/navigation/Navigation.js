@@ -1,16 +1,23 @@
 import React from 'react'
+import { useApolloClient } from 'react-apollo-hooks'
 import Menu from './Menu'
 import TogglableButton from './TogglableButton'
 
 import './styles/Navigation.css'
 import logo from '../../pictures/pigeon-logo.svg'
 
-const Navigation = ({ token, handleLoginButton, handleRegisterButton }) => {
-  console.log('token:', token)
+const Navigation = ({ token, setToken, handleLoginButton, handleRegisterButton, logout }) => {
+  const client = useApolloClient()
+
+  const handleLogout = () => {
+    setToken(null)
+    localStorage.clear()
+    client.resetStore()
+  }
 
   const menu = () => {
     if (token) {
-      return <Menu />
+      return <Menu handleLogout={handleLogout} />
     }
 
     return (
