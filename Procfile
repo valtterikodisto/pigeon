@@ -1,1 +1,1 @@
-web: sh -c 'cd ./pigeon-backend && node server.js'
+web: node server.js

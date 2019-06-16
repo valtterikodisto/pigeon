@@ -1,10 +1,11 @@
 {
   "name": "pigeon",
   "version": "0.1.0",
-  "description": "Pigeon backend",
-  "main": "index.js",
+  "description": "Pigeon chat application",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "build": "cd pigeon-frontend/ && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "nodemon server.js"
   },

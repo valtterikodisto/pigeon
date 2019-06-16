@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf ../pigeon-backend/public && mkdir ../pigeon-backend/public && react-scripts build && mv build/* ../pigeon-backend/public",
+    "build": "rm -rf ../public && mkdir ../public && react-scripts build && mv build/* ../public",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "json-server -p3001 database.json"
