@@ -45,8 +45,8 @@ const Login = ({ token, setToken }) => {
   const submitLogin = async (username, password) => {
     try {
       const { data } = await login({ variables: { username, password } })
-      setToken(data.login.value)
       localStorage.setItem('pigeon-token', data.login.value)
+      setToken(data.login.value)
     } catch (error) {
       const invalidCredentials = handleLoginError(error)
       if (invalidCredentials) {
@@ -58,8 +58,8 @@ const Login = ({ token, setToken }) => {
   const submitRegister = async (username, password, firstName, lastName) => {
     try {
       const { data } = await register({ variables: { username, password, firstName, lastName } })
+      localStorage.setItem('pigeon-token', data.addUser.value)
       setToken(data.addUser.value)
-      localStorage.setItem('pigeon-token', data.login.value)
     } catch (error) {
       const usernameTaken = handleRegisterError(error)
       if (usernameTaken) {
