@@ -121,9 +121,3 @@ input:focus ~ span {
   transform-origin: bottom left;
   transform: scaleX(1);
 }
-
-/* PAGE STYLES */
-.page-wrapper {
-  display: grid;
-  grid-template-rows: 10vh minmax(90vh, 1fr);
-}

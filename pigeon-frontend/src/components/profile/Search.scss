@@ -1,0 +1,41 @@
+@import '../App.scss';
+
+$search-button-height: 5em;
+
+.search-box {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: $search-button-height;
+  width: 100vw;
+  z-index: 2;
+  display: grid;
+  opacity: 0;
+  grid-template-columns: 1fr $search-button-height;
+
+  form {
+    display: grid;
+    grid-template-columns: 1fr $search-button-height;
+    grid-column-gap: 1em;
+    padding: $search-button-height / 8 0;
+    input {
+      border: 0.3em solid $primary-color;
+      border-radius: 10em;
+      border-color: $primary-color;
+      outline: none;
+      padding: 1em;
+      font-family: $primary-font;
+    }
+  }
+}
+
+.search-button {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 3;
+  background: $grey;
+  height: 5em;
+  width: 5em;
+  padding: $search-button-height / 8;
+}

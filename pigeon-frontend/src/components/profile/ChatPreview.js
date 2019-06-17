@@ -7,8 +7,6 @@ const ChatPreview = ({ chat, setChatId }) => {
 
   const getPreviewMessage = () => {
     if (chat.messages.length > 0) {
-      console.log(chat)
-
       const { sender, message } = chat.messages[0]
       return <div className="chat-preview-message">{`${sender.firstName}: ${message}`}</div>
     }

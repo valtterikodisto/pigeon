@@ -5,11 +5,13 @@ export default () => {
   console.log('LOADINGGGGG')
 
   return (
-    <div className="ellipsis">
-      <div />
-      <div />
-      <div />
-      <div />
+    <div className="loading">
+      <div className="ellipsis">
+        <div />
+        <div />
+        <div />
+        <div />
+      </div>
     </div>
   )
 }

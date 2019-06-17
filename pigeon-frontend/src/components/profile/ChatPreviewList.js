@@ -7,19 +7,14 @@ const ChatPreviewList = ({ state, chats, loading, error, setChatId }) => {
   const chatPreviewRef = useRef()
 
   useEffect(() => {
-    if (!loading) chatPreviewAnimation(chatPreviewRef.current.children)
+    if (!loading && chatPreviewRef.current) chatPreviewAnimation(chatPreviewRef.current.children)
   }, [loading])
 
   if (error) {
     return <div>Could not fetch chats</div>
   }
   const chatRow = () => {
-    if (loading)
-      return (
-        <div className="loading">
-          <Loading />
-        </div>
-      )
+    if (loading) return <Loading />
 
     chats.sort((a, b) => {
       const dateA = a.messages.length > 0 ? a.messages[0].timestamp : null

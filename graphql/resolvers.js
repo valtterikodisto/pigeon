@@ -20,6 +20,20 @@ const resolvers = {
     findUser: async (root, args, context) => {
       return await User.findById(args.id)
     },
+    findUserByKeyword: async (root, { keyword }, { currentUser }) => {
+      const regex = (field, keyword) => {
+        return { [field]: { $regex: `.*${keyword}.*`, $options: 'i' } }
+      }
+
+      const users = User.find(
+        {
+          $or: [regex('username', keyword), regex('firstName', keyword), regex('lastName', keyword)]
+        },
+        'id username firstName lastName'
+      ).limit(5)
+
+      return users
+    },
     allUsers: async (root, args) => {
       return await User.find({}).populate('chats')
     },
@@ -92,7 +106,6 @@ const resolvers = {
         .populate({
           path: 'users'
         })
-      return Chat.findById(chatId).populate('messages users')
     },
     findChatUsers: (root, args, context) => {
       return Chat.findById(args.id).users

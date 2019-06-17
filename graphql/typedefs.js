@@ -37,6 +37,7 @@ const typeDefs = gql`
   type Query {
     currentUser: User
     findUser(id: ID!): User
+    findUserByKeyword(keyword: String!): [User]
     allUsers: [User]!
     allMessages: [Message]!
     allChats: [Chat]!

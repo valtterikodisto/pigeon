@@ -28,3 +28,9 @@ body {
   font-family: $primary-font;
   color: $grey;
 }
+
+/* PAGE STYLES */
+.page-wrapper {
+  display: grid;
+  grid-template-rows: 10vh minmax(90vh, 1fr);
+}

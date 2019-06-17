@@ -11,7 +11,14 @@
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 4fr;
-    opacity: 0;
+    cursor: pointer;
+
+    &:hover {
+      .profile-icon-wrapper > div {
+        transition-duration: 0.4s;
+        background: $secondary-color;
+      }
+    }
 
     .profile-icon-wrapper {
       display: grid;
@@ -29,7 +36,7 @@
         width: 2.5em;
         background: $primary-color;
         border-radius: 10em;
-        font-size: 1.5em;
+        font-size: 1.4em;
       }
     }
 
