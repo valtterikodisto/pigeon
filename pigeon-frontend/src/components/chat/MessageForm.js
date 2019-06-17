@@ -2,15 +2,13 @@ import React, { useState } from 'react'
 
 import sendIcon from '../../pictures/send-icon.svg'
 
-const MessageForm = props => {
+const MessageForm = ({ chatId, addMessage }) => {
   const [message, setMessage] = useState('')
 
   const submit = async e => {
     e.preventDefault()
-    const chatId = '123'
-    await props.addMessage({
-      //
-      variables: { chatId: chatId, message }
+    await addMessage({
+      variables: { chatId: chatId, message: message }
     })
 
     setMessage('')
