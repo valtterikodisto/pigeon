@@ -24,7 +24,7 @@ const ALL_CHATS = gql`
   }
 `
 
-const Profile = ({ token, setToken }) => {
+const Profile = ({ token, setToken, setChatId }) => {
   const { data, loading, error } = useQuery(ALL_CHATS)
 
   return (
@@ -32,7 +32,13 @@ const Profile = ({ token, setToken }) => {
       <Navigation token={token} setToken={setToken} />
       <Transition>
         {state => (
-          <ChatPreviewList state={state} chats={data.allChats} loading={loading} error={error} />
+          <ChatPreviewList
+            state={state}
+            chats={data.allChats}
+            loading={loading}
+            error={error}
+            setChatId={setChatId}
+          />
         )}
       </Transition>
     </div>

@@ -1,6 +1,10 @@
 import React from 'react'
 
-const ChatPreview = ({ chat }) => {
+const ChatPreview = ({ chat, setChatId }) => {
+  const handleClick = e => {
+    setChatId(chat.id)
+  }
+
   const getPreviewMessage = () => {
     if (chat.messages.length > 0) {
       console.log(chat)
@@ -12,7 +16,7 @@ const ChatPreview = ({ chat }) => {
   }
 
   return (
-    <div>
+    <div onClick={handleClick}>
       <div className="profile-icon-wrapper">
         <div>GR</div>
       </div>

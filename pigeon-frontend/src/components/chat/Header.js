@@ -1,20 +1,28 @@
 import React from 'react'
 
-const Topbar = props => {
-  return (
-    <div className="header">
-      <div className="header-container">
-        <div className="header-group-name" align="center">
-          {props.groupName}
+const Topbar = ({ chat, setChatId }) => {
+  const handleClick = () => {
+    setChatId(null)
+  }
+  if (chat.findChat) {
+    console.log('users: ', chat)
+    return (
+      <div className="header">
+        <div className="header-container">
+          <button onClick={handleClick}>nappi</button>
+          <div className="header-group-name" align="center">
+            {chat.findChat.name}
+          </div>
+          <ul className="header-users-list">
+            {chat.findChat.users.map(user => (
+              <li key={user.id}>{user.username}</li>
+            ))}
+          </ul>
         </div>
-        <ul className="header-users-list">
-          {props.users.map(user => (
-            <li key={user.id}>{user.username}</li>
-          ))}
-        </ul>
       </div>
-    </div>
-  )
+    )
+  }
+  return <p>loading</p>
 }
 
 export default Topbar

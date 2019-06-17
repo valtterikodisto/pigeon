@@ -3,7 +3,7 @@ import { chatPreviewAnimation } from '../../animations/profile'
 import ChatPreview from './ChatPreview'
 import Loading from '../loading/Loading'
 
-const ChatPreviewList = ({ state, chats, loading, error }) => {
+const ChatPreviewList = ({ state, chats, loading, error, setChatId }) => {
   const chatPreviewRef = useRef()
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const ChatPreviewList = ({ state, chats, loading, error }) => {
     return (
       <div className="chat-preview-list" ref={chatPreviewRef}>
         {chats.map(chat => (
-          <ChatPreview key={chat.id} chat={chat} />
+          <ChatPreview key={chat.id} chat={chat} setChatId={setChatId} />
         ))}
       </div>
     )

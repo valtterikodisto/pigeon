@@ -8,14 +8,16 @@ import './App.scss'
 
 const App = props => {
   const [token, setToken] = useState(localStorage.getItem('pigeon-token'))
-
+  const [chatId, setChatId] = useState(null)
   const changeToken = token => setToken(token)
 
   if (!token) {
     return <Login token={token} setToken={changeToken} />
   }
-
-  return <Profile token={token} setToken={setToken} />
+  if (!chatId) {
+    return <Profile token={token} setToken={setToken} setChatId={setChatId} />
+  }
+  return <Chat chatId={chatId} setChatId={setChatId} />
 }
 
 export default App
