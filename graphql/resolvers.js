@@ -10,8 +10,6 @@ const Friendship = require('../models/friendship')
 const Chat = require('../models/chat')
 const User = require('../models/user')
 
-//Getting users friendships doesn't work. Problem with the mongoose models.
-
 const JWT_SECRET = process.env.SECRET
 
 const resolvers = {
@@ -83,8 +81,18 @@ const resolvers = {
 
       return combined
     },
-    findChat: (root, args, context) => {
-      return Chat.findById(args.id)
+    findChat: (root, { chatId }, context) => {
+      return Chat.findById(chatId)
+        .populate({
+          path: 'messages',
+          populate: {
+            path: 'sender'
+          }
+        })
+        .populate({
+          path: 'users'
+        })
+      return Chat.findById(chatId).populate('messages users')
     },
     findChatUsers: (root, args, context) => {
       return Chat.findById(args.id).users
