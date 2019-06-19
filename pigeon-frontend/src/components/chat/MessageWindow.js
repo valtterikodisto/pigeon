@@ -11,7 +11,12 @@ const MessageWindow = ({ messages, currentUser, error, loading }) => {
 
     return <div className="pigeon-messages-container">{messageRows()}</div>
   }
-  return <p>loading</p>
+
+  return (
+    <div className="chat-loading">
+      <p>loading</p>
+    </div>
+  )
 }
 
 export default MessageWindow

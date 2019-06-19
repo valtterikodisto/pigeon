@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { gql } from 'apollo-boost'
 import { useQuery, useMutation } from 'react-apollo-hooks'
+import './Chat.css'
 
 import MessageWindow from './MessageWindow'
 import MessageForm from './MessageForm'
@@ -44,6 +45,7 @@ const FIND_CHAT = gql`
       name
       users {
         username
+        id
       }
       messages {
         message
@@ -82,9 +84,9 @@ const Chat = ({ chatId, setChatId }) => {
   //CurrentUser isnt passed
 
   return (
-    <div className="container">
+    <div className="chat-wrapper">
       <Header chat={data} setChatId={setChatId} />
-      <div className="main">
+      <div className="chat-container">
         <MessageWindow
           messages={messages.messages}
           currentUser={'temp'}

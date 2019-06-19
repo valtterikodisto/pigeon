@@ -7,8 +7,8 @@ const Topbar = ({ chat, setChatId }) => {
   if (chat.findChat) {
     console.log('users: ', chat)
     return (
-      <div className="header">
-        <div className="header-container">
+      <div className="chat-header-wrapper">
+        <div className="chat-header-container">
           <button onClick={handleClick}>nappi</button>
           <div className="header-group-name" align="center">
             {chat.findChat.name}

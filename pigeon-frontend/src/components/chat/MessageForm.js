@@ -15,7 +15,7 @@ const MessageForm = ({ chatId, addMessage }) => {
   }
 
   return (
-    <div className="message-form-container">
+    <div className="message-form-wrapper">
       <form className="message-form" onSubmit={submit}>
         <input
           type="text"
@@ -25,7 +25,7 @@ const MessageForm = ({ chatId, addMessage }) => {
         />
         <span />
       </form>
-      <img id="send-icon" src={sendIcon} alt="send icon" />
+      <img id="send-icon" src={sendIcon} alt="send icon" onClick={submit} />
     </div>
   )
 }
