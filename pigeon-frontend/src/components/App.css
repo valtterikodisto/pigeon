@@ -3,3 +3,8 @@
   padding: 0;
   margin: 0;
 }
+
+.page-wrapper {
+  display: grid;
+  grid-template-rows: 10vh minmax(90vh, 1fr);
+}

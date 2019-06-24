@@ -6,6 +6,7 @@ import './Chat.css'
 import MessageWindow from './MessageWindow'
 import MessageForm from './MessageForm'
 import Header from './Header'
+import Navigation from '../navigation/Navigation'
 
 const ALL_MESSAGES = gql`
   {
@@ -61,7 +62,7 @@ const FIND_CHAT = gql`
   }
 `
 
-const Chat = ({ chatId, setChatId }) => {
+const Chat = ({ token, setToken, chatId, setChatId }) => {
   const [name, setName] = useState('')
   const [messages, setMessages] = useState([])
   const [users, setUsers] = useState([])
@@ -81,11 +82,9 @@ const Chat = ({ chatId, setChatId }) => {
     refetchQueries: [{ query: FIND_CHAT, variables: { chatId: chatId } }]
   })
 
-  //CurrentUser isnt passed
-
   return (
     <div className="chat-wrapper">
-      <Header chat={data} setChatId={setChatId} />
+      <Navigation token={token} setToken={setToken} setChatId={setChatId} />
       <div className="chat-container">
         <MessageWindow
           messages={messages.messages}

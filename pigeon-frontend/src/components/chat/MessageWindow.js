@@ -1,5 +1,6 @@
 import React from 'react'
 import Message from './Message'
+import Loading from '../loading/Loading'
 
 const MessageWindow = ({ messages, currentUser, error, loading }) => {
   if (error) return <p>{error.message}</p>
@@ -12,11 +13,7 @@ const MessageWindow = ({ messages, currentUser, error, loading }) => {
     return <div className="pigeon-messages-container">{messageRows()}</div>
   }
 
-  return (
-    <div className="chat-loading">
-      <p>loading</p>
-    </div>
-  )
+  return <Loading id="chat-loading" />
 }
 
 export default MessageWindow

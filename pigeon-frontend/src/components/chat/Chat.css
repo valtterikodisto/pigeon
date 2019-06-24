@@ -5,17 +5,12 @@
 }
 
 /* PAGE STYLES */
-.page-wrapper {
-  display: grid;
-  grid-template-rows: 10vh minmax(90vh, 1fr);
-}
 
 .chat-wrapper {
   display: grid;
   grid-template-areas:
     'header'
     'container';
-  grid-template-rows: 60px;
   height: 100vh;
   width: 100%;
 }

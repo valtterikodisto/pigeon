@@ -17,7 +17,7 @@ const App = props => {
   if (!chatId) {
     return <Profile token={token} setToken={setToken} setChatId={setChatId} />
   }
-  return <Chat chatId={chatId} setChatId={setChatId} />
+  return <Chat token={token} setToken={setToken} chatId={chatId} setChatId={setChatId} />
 }
 
 export default App
