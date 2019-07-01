@@ -6,6 +6,7 @@ const MessageWindow = ({ messages, currentUser, error, loading }) => {
   if (error) return <p>{error.message}</p>
   //include time
   if (messages) {
+    console.log(messages)
     const messageRows = () =>
       messages.map(message => (
         <Message key={message.id} message={message} currentUser={currentUser} />

@@ -97,7 +97,7 @@ const resolvers = {
     },
     //rename
     //get time
-    findChat: (root, { chatId }, context) => {
+    getChatMessages: (root, { chatId }, context) => {
       return Chat.findById(chatId)
         .populate({
           path: 'messages',

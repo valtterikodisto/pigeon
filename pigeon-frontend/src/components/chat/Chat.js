@@ -16,9 +16,9 @@ const ADD_MESSAGE = gql`
   }
 `
 
-const FIND_CHAT = gql`
-  query findChat($chatId: ID!) {
-    findChat(chatId: $chatId) {
+const GET_CHAT_MESSAGES = gql`
+  query getChatMessages($chatId: ID!) {
+    getChatMessages(chatId: $chatId) {
       name
       users {
         username
@@ -31,6 +31,7 @@ const FIND_CHAT = gql`
           firstName
           lastName
         }
+        timestamp
         id
       }
       id
@@ -40,7 +41,7 @@ const FIND_CHAT = gql`
 
 const Chat = ({ token, setToken, chatId, setChatId, currentUser }) => {
   const [messages, setMessages] = useState([])
-  const { data, error, loading } = useQuery(FIND_CHAT, {
+  const { data, error, loading } = useQuery(GET_CHAT_MESSAGES, {
     variables: { chatId: chatId }
   })
 
@@ -51,7 +52,7 @@ const Chat = ({ token, setToken, chatId, setChatId, currentUser }) => {
   }, [data, error, loading])
 
   const addMessage = useMutation(ADD_MESSAGE, {
-    refetchQueries: [{ query: FIND_CHAT, variables: { chatId: chatId } }]
+    refetchQueries: [{ query: GET_CHAT_MESSAGES, variables: { chatId: chatId } }]
   })
   return (
     <div className="chat-wrapper">

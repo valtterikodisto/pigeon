@@ -41,7 +41,7 @@ const typeDefs = gql`
     allUsers: [User]!
     allMessages: [Message]!
     allChats: [Chat]!
-    findChat(chatId: ID!): Chat
+    getChatMessages(chatId: ID!): Chat
     findChatUsers(id: ID!): [User]
   }
 
