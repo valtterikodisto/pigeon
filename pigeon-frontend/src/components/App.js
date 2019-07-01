@@ -6,7 +6,7 @@ import Profile from './profile/Profile'
 import './App.css'
 import './App.scss'
 
-const App = props => {
+const App = () => {
   const [token, setToken] = useState(localStorage.getItem('pigeon-token'))
   const [chatId, setChatId] = useState(null)
   const changeToken = token => setToken(token)
