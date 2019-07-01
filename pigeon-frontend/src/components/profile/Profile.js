@@ -9,6 +9,16 @@ import Search from './Search'
 
 import './Profile.scss'
 
+const CURRENT_USER = gql`
+  query {
+    currentUser {
+      username
+      firstName
+      lastName
+    }
+  }
+`
+
 const ALL_CHATS = gql`
   query {
     allChats {
@@ -25,9 +35,12 @@ const ALL_CHATS = gql`
   }
 `
 
-const Profile = ({ token, setToken, setChatId }) => {
+const Profile = ({ token, setToken, setChatId, setCurrentUser }) => {
   const { data, loading, error } = useQuery(ALL_CHATS)
+  const { data: userData } = useQuery(CURRENT_USER)
   const [searchIn, setSearchIn] = useState(false)
+
+  setCurrentUser(userData.currentUser)
 
   const toggleSearchButton = () => {
     setSearchIn(!searchIn)

@@ -14,16 +14,6 @@ import {
 import { animateHeader, animateLoginRegister } from '../../animations/login'
 import './Login.scss'
 
-const GET_CURRENT_USER = gql`
-  query {
-    currentUser {
-      username
-      firstName
-      lastName
-    }
-  }
-`
-
 const LOGIN = gql`
   mutation login($username: String!, $password: String!) {
     login(username: $username, password: $password) {
@@ -51,18 +41,14 @@ const Login = ({ token, setToken, setCurrentUser }) => {
   const [registerError, setRegisterError] = useState(false)
   const login = useMutation(LOGIN)
   const register = useMutation(REGISTER)
-  const getUser = useQuery(GET_CURRENT_USER)
 
   const submitLogin = async (username, password) => {
     try {
       const { data: loginData } = await login({ variables: { username, password } })
-      const { data: userData } = await getUser()
 
       localStorage.setItem('pigeon-token', loginData.login.value)
-      localStorage.setItem('user', userData.currentUser)
 
       setToken(loginData.login.value)
-      setCurrentUser(userData.currentUser)
     } catch (error) {
       const invalidCredentials = handleLoginError(error)
       if (invalidCredentials) {
@@ -76,13 +62,10 @@ const Login = ({ token, setToken, setCurrentUser }) => {
       const { data: registerData } = await register({
         variables: { username, password, firstName, lastName }
       })
-      const { data: userData } = await getUser()
 
       localStorage.setItem('pigeon-token', registerData.addUser.value)
-      localStorage.setItem('user', userData.currentUser)
 
       setToken(registerData.addUser.value)
-      setCurrentUser(userData.currentUser)
     } catch (error) {
       const usernameTaken = handleRegisterError(error)
       if (usernameTaken) {
