@@ -4,6 +4,7 @@ import Loading from '../loading/Loading'
 
 const MessageWindow = ({ messages, currentUser, error, loading }) => {
   if (error) return <p>{error.message}</p>
+  //New current user
   if (messages) {
     const messageRows = () =>
       messages.map(message => (
@@ -12,6 +13,7 @@ const MessageWindow = ({ messages, currentUser, error, loading }) => {
 
     return <div className="pigeon-messages-container">{messageRows()}</div>
   }
+  //Include current user loading.
   return (
     <div className="chat-loading-container">
       <Loading id="chat-loading" />
