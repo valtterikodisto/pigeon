@@ -95,6 +95,8 @@ const resolvers = {
 
       return combined
     },
+    //rename
+    //get time
     findChat: (root, { chatId }, context) => {
       return Chat.findById(chatId)
         .populate({
