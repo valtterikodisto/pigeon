@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { gql } from 'apollo-boost'
-import { useApolloClient, useMutation } from 'react-apollo-hooks'
+import { useApolloClient, useMutation, useQuery } from 'react-apollo-hooks'
 
 import Navigation from '../navigation/Navigation'
 import LoginForm from './LoginForm'
@@ -13,6 +13,16 @@ import {
 } from '../../helpers/errorhandlers/loginErrorHandler'
 import { animateHeader, animateLoginRegister } from '../../animations/login'
 import './Login.scss'
+
+const GET_CURRENT_USER = gql`
+  query {
+    currentUser {
+      username
+      firstName
+      lastName
+    }
+  }
+`
 
 const LOGIN = gql`
   mutation login($username: String!, $password: String!) {
@@ -35,18 +45,24 @@ const REGISTER = gql`
   }
 `
 
-const Login = ({ token, setToken }) => {
+const Login = ({ token, setToken, setCurrentUser }) => {
   const [loginHidden, setLoginHidden] = useState(false)
   const [loginError, setLoginError] = useState(false)
   const [registerError, setRegisterError] = useState(false)
   const login = useMutation(LOGIN)
   const register = useMutation(REGISTER)
+  const getUser = useQuery(GET_CURRENT_USER)
 
   const submitLogin = async (username, password) => {
     try {
-      const { data } = await login({ variables: { username, password } })
-      localStorage.setItem('pigeon-token', data.login.value)
-      setToken(data.login.value)
+      const { data: loginData } = await login({ variables: { username, password } })
+      const { data: userData } = await getUser()
+
+      localStorage.setItem('pigeon-token', loginData.login.value)
+      localStorage.setItem('user', userData.currentUser)
+
+      setToken(loginData.login.value)
+      setCurrentUser(userData.currentUser)
     } catch (error) {
       const invalidCredentials = handleLoginError(error)
       if (invalidCredentials) {
@@ -57,9 +73,16 @@ const Login = ({ token, setToken }) => {
 
   const submitRegister = async (username, password, firstName, lastName) => {
     try {
-      const { data } = await register({ variables: { username, password, firstName, lastName } })
-      localStorage.setItem('pigeon-token', data.addUser.value)
-      setToken(data.addUser.value)
+      const { data: registerData } = await register({
+        variables: { username, password, firstName, lastName }
+      })
+      const { data: userData } = await getUser()
+
+      localStorage.setItem('pigeon-token', registerData.addUser.value)
+      localStorage.setItem('user', userData.currentUser)
+
+      setToken(registerData.addUser.value)
+      setCurrentUser(userData.currentUser)
     } catch (error) {
       const usernameTaken = handleRegisterError(error)
       if (usernameTaken) {
