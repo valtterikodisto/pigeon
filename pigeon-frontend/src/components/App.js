@@ -12,7 +12,7 @@ const App = () => {
   const changeToken = token => setToken(token)
 
   if (!token) {
-    return <Login token={token} setToken={changeToken} />
+    return <Login token={token} setToken={changeToken} setCurrentUser={setCurrentUser} />
   }
   if (!chatId) {
     return <Profile token={token} setToken={setToken} setChatId={setChatId} />
