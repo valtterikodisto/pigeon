@@ -19,9 +19,12 @@ after that navigate to the folder ```pigeon-frontend``` and run the same ```npm 
 
 ## How to run 
 <p></p>
-Ensure that you have .env file in the root folder, that contains this line:
+Ensure that you have .env file in the root folder, that contains these lines:
 
-```MONGODB_URI = <YOUR LINK HERE>```  
+```
+MONGODB_URI = <YOUR LINK HERE>    
+SECRET = <ANY STRING HERE>
+```  
 
 Then start the server by using this command in the root folder:  
 
